@@ -1,19 +1,40 @@
-test {
-	const boolean z = true;
-	int x = 3;
-	int y =4;
-	if (x == 2){
-		x = 2;
-		y = 5;
-	}else{
-		x=4;
-	}
-	x = 10;
-	while (x >= 8){
-		x = x-1;
-	}
-	print x;
-	print y ;
+test1 {
+
+/* programme de test du TD4 */
+
+
+	int i = 1;
+	const int j = 2;
+   <int,int> p = <3,4>;
+
+	int k = fst p; 
+
+	if(i < 5){
+
+		 int j = 5;
+		 j = i * (snd p);
+		 i = j + 1;
+
+		 while(k < 10){
+			 int p = 3;
+			 k = k + i; 
+		 }
+	 }  else {
+			 if(i + 1 > 10) {
+				 const boolean p = false;
+				print p;
+			 }
+			print p;
+
+		 } 
+			print j; 
+	
+/* programme de test du TD6 */
+	 int v = 1;
+	 int *ptr = &v;
+	 int w = *ptr;
+	 int t[] = new int[5];
+	 int z = t[3];
 }
 
 
