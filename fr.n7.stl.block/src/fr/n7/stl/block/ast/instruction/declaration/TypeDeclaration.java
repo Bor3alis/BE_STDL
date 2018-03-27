@@ -49,7 +49,7 @@ public class TypeDeclaration implements Declaration, Instruction {
 	 */
 	@Override
 	public boolean resolve(HierarchicalScope<Declaration> _scope) {
-		
+		boolean retour;
 		if(_scope.contains(this.name)) {
 			retour = false;
 		} else {
@@ -58,6 +58,8 @@ public class TypeDeclaration implements Declaration, Instruction {
 			retour = true;
 		}else{
 			retour=false;
+		}
+		
 		}
 		return retour;
 	}
