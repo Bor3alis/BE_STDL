@@ -60,7 +60,8 @@ public class ArrayType implements Type {
 	 */
 	@Override
 	public int length() {
-		throw new SemanticsUndefinedException("Semantics length is not implemented in ArrayType.");
+		/* juste la taille de l'adresse */
+		return 1;
 	}
 
 	/* (non-Javadoc)
