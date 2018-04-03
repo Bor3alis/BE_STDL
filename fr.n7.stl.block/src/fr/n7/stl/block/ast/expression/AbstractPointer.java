@@ -51,11 +51,11 @@ public abstract class AbstractPointer implements Expression {
 	 */
 	public Type getType() {
 		Type tp = this.pointer.getType();
-		if(tp instanceof PointerType) {
+		if(!(tp instanceof PointerType)) {
 			Logger.error("AbstractPointer : type mismatch" );
 			return AtomicType.ErrorType;
 		} else {
-			return tp;
+			return ((PointerType)tp).getPointedType();
 		}
 	}
 

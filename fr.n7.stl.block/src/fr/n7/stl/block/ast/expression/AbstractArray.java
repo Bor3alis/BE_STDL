@@ -66,7 +66,7 @@ public abstract class AbstractArray implements Expression {
 				Logger.error("index is not an integer");
 				return AtomicType.ErrorType;
 			} else {
-				return this.getType();
+				return ((ArrayType)ta).getType();
 			}
 		}
 	}
