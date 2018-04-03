@@ -8,6 +8,7 @@ import fr.n7.stl.block.ast.expression.assignable.AssignableExpression;
 import fr.n7.stl.block.ast.instruction.declaration.VariableDeclaration;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
+import fr.n7.stl.block.ast.type.AtomicType;
 import fr.n7.stl.block.ast.type.PointerType;
 import fr.n7.stl.block.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
@@ -31,20 +32,7 @@ public class AddressAccess implements AccessibleExpression {
 	 */
 	@Override
 	public boolean resolve(HierarchicalScope<Declaration> _scope) {
-		boolean ok = true;
-		Declaration i = _scope.get(this.toString());
-		
-		if(i == null) {
-			Logger.error("Error AddressAccess");
-			return false;
-		} else {
-			if(!(i instanceof VariableDeclaration)){
-				ok = false;
-			} else {
-				this.assignable = (AssignableExpression) i;
-			}
-		}
-		return ok;
+		return this.assignable.resolve(_scope);
 	}
 	
 	/* (non-Javadoc)
@@ -52,7 +40,13 @@ public class AddressAccess implements AccessibleExpression {
 	 */
 	@Override
 	public Type getType() {
-		return new PointerType(this.assignable.getType());
+		if(this.assignable.getType() instanceof VariableDeclaration) {
+			return new PointerType(this.assignable.getType());
+		} else {
+			Logger.error("Error AddressAccess : getType()");
+			return AtomicType.ErrorType;
+		}
+		
 	}
 	
 	/* (non-Javadoc)
