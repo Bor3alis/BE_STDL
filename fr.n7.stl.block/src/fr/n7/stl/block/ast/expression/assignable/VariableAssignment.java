@@ -55,6 +55,7 @@ public class VariableAssignment extends AbstractIdentifier implements Assignable
 	 */
 	@Override
 	public Type getType() {
+		System.out.println("VariableAssignement " + this.declaration.getType());
 		return this.declaration.getType();
 	}
 

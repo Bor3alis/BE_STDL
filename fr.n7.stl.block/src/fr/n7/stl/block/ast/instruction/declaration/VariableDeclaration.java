@@ -55,6 +55,7 @@ public class VariableDeclaration implements Declaration, Instruction {
 	 */
 	public VariableDeclaration(String _name, Type _type, Expression _value) {
 		this.name = _name;
+		System.out.println("ffffffffff" + _type);
 		this.type = _type;
 		this.value = _value;
 	}
@@ -130,7 +131,7 @@ public class VariableDeclaration implements Declaration, Instruction {
 		if(!treel.compatibleWith(this.type)) {
 			System.out.println(treel);
 			System.out.println(type);
-			Logger.error("the variable " + this.name + " has the wrong type");
+			Logger.error("the variable " + this.name + " has the type " + type + " but should be type of " + treel);
 			return false;
 		} else {
 			return true;

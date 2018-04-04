@@ -3,12 +3,18 @@
  */
 package fr.n7.stl.block.ast;
 
+import java.util.Iterator;
 import java.util.List;
 
+import fr.n7.stl.block.ast.instruction.Conditional;
 import fr.n7.stl.block.ast.instruction.Instruction;
+import fr.n7.stl.block.ast.instruction.Iteration;
+import fr.n7.stl.block.ast.instruction.Return;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.scope.SymbolTable;
+import fr.n7.stl.block.ast.type.AtomicType;
+import fr.n7.stl.block.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
@@ -30,6 +36,11 @@ public class Block {
 	 */
 	protected List<Instruction> instructions;
 
+	
+	public List<Instruction> getInstructions() {
+		return instructions;
+	}
+
 	/**
 	 * Constructor for a block.
 	 */
@@ -49,6 +60,8 @@ public class Block {
 		return "{\n" + _local + "}\n" ;
 	}
 	
+	
+	
 	/**
 	 * Inherited Semantics attribute to check that all identifiers have been defined and
 	 * associate all identifiers uses with their definitions.
@@ -67,6 +80,13 @@ public class Block {
 		
 		return _result;
 
+	}
+	Type getReturnType() {
+		Type res = AtomicType.VoidType;
+		for (Instruction i :  instructions) {
+			res =res.merge(i.getReturnType());	
+			}
+		return res;
 	}
 
 	/**
@@ -105,5 +125,8 @@ public class Block {
 	public Fragment getCode(TAMFactory _factory) {
 		throw new SemanticsUndefinedException("Semantics generateCode is undefined in Block.");
 	}
+	
+	
+	
 
 }
