@@ -7,6 +7,7 @@ import fr.n7.stl.block.ast.SemanticsUndefinedException;
 import fr.n7.stl.block.ast.expression.Expression;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
+import fr.n7.stl.block.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
@@ -19,9 +20,18 @@ import fr.n7.stl.tam.ast.TAMFactory;
 public class Return implements Instruction {
 
 	protected Expression value;
+	
+
+	public Expression getValue() {
+		return value;
+	}
 
 	public Return(Expression _value) {
 		this.value = _value;
+	}
+	
+	public Type getReturnType() {
+		return this.value.getType();
 	}
 
 	/* (non-Javadoc)

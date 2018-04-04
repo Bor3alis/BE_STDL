@@ -115,9 +115,14 @@ Program ::= UL_Identificateur:nom Bloc:bloc
 				System.out.println( bloc ); 
 				SymbolTable tds = new SymbolTable();
 				if (bloc.resolve(tds)) {
-					System.out.println("OK" + tds);
+					System.out.println("OK");
 				} else {
-					System.out.println("KO" + tds);
+					System.out.println("KO");
+				}
+				if(bloc.checkType() ){
+					System.out.println("Type OK");
+				} else {
+					System.out.println("Type KO");
 				}
 			:}
 		;

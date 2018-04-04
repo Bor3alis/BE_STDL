@@ -35,6 +35,9 @@ test1 {
 	 int w = *ptr;
 	 int t[] = new int[5];
 	 int z = t[3];
+	 
+	 
+	 
 }
 
 

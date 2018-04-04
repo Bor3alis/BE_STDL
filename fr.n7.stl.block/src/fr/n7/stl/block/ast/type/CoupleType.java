@@ -3,6 +3,7 @@
  */
 package fr.n7.stl.block.ast.type;
 
+import fr.n7.stl.block.ast.instruction.declaration.TypeDeclaration;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
 
@@ -47,7 +48,12 @@ public class CoupleType implements Type {
 		if (_other instanceof CoupleType) {
 			return this.first.compatibleWith(((CoupleType) _other).first)
 					&& this.second.compatibleWith(((CoupleType) _other).second);
-		} else {
+		} else if(_other instanceof NamedType) {
+			TypeDeclaration td = (TypeDeclaration) ((NamedType)_other).getType();
+			
+		}
+		
+		{
 			return false;
 		}
 	}

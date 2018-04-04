@@ -726,9 +726,14 @@ class CUP$Parser$actions {
 				System.out.println( bloc ); 
 				SymbolTable tds = new SymbolTable();
 				if (bloc.resolve(tds)) {
-					System.out.println("OK" + tds);
+					System.out.println("OK");
 				} else {
-					System.out.println("KO" + tds);
+					System.out.println("KO");
+				}
+				if(bloc.checkType() ){
+					System.out.println("Type OK");
+				} else {
+					System.out.println("Type KO");
 				}
 			
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("Program",0, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);

@@ -11,6 +11,7 @@ import fr.n7.stl.block.ast.expression.Expression;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.type.AtomicType;
+import fr.n7.stl.block.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
@@ -25,6 +26,16 @@ public class Conditional implements Instruction {
 	protected Expression condition;
 	protected Block thenBranch;
 	protected Optional<Block> elseBranch;
+	
+	
+
+	public Block getThenBranch() {
+		return thenBranch;
+	}
+
+	public Optional<Block> getElseBranch() {
+		return elseBranch;
+	}
 
 	public Conditional(Expression _condition, Block _then, Block _else) {
 		this.condition = _condition;
@@ -94,6 +105,17 @@ public class Conditional implements Instruction {
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
 		throw new SemanticsUndefinedException( "Semantics getCode is undefined in Conditional.");
+	}
+
+	@Override
+	public Type getReturnType() {
+		Type res = AtomicType.VoidType;
+		res = res.merge(this.thenBranch.getReturnType());
+		if(this.elseBranch.isPresent()) {
+			res = res.merge(this.elseBranch.get().getReturnType());
+		}
+		return res;
+
 	}
 
 }

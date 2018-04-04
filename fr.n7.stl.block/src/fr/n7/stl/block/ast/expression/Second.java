@@ -6,9 +6,12 @@ package fr.n7.stl.block.ast.expression;
 import fr.n7.stl.block.ast.SemanticsUndefinedException;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
+import fr.n7.stl.block.ast.type.AtomicType;
+import fr.n7.stl.block.ast.type.CoupleType;
 import fr.n7.stl.block.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.TAMFactory;
+import fr.n7.stl.util.Logger;
 
 /**
  * Implementation of the Abstract Syntax Tree node  for an expression extracting the second component in a couple.
@@ -42,7 +45,12 @@ public class Second implements Expression {
 	 */
 	@Override
 	public Type getType() {
-		return this.target.getType();
+		if(!(this.target.getType() instanceof CoupleType)) {
+			Logger.error(this.target + " isn't a CoupleType");
+			return AtomicType.ErrorType;
+		} else {
+			return ((CoupleType)this.target.getType()).getFirst();
+		}
 	}
 
 	/* (non-Javadoc)

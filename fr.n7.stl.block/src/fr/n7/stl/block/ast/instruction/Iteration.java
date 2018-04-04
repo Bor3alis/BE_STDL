@@ -21,6 +21,11 @@ public class Iteration implements Instruction {
 
 	protected Expression condition;
 	protected Block body;
+	
+
+	public Block getBody() {
+		return body;
+	}
 
 	public Iteration(Expression _condition, Block _body) {
 		this.condition = _condition;
