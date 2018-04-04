@@ -12,6 +12,7 @@ import fr.n7.stl.block.ast.scope.SymbolTable;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
+import fr.n7.stl.tam.ast.impl.FragmentImpl;
 
 /**
  * Represents a Block node in the Abstract Syntax Tree node for the Bloc language.
@@ -103,7 +104,17 @@ public class Block {
 	 * @return Synthesized AST for the generated TAM code.
 	 */
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException("Semantics generateCode is undefined in Block.");
+		int taille_bloc = 0;
+		Fragment code = new FragmentImpl();
+		
+		for(Instruction i : this.instructions) {
+			code.append(i.getCode(_factory));
+			// On considère que la taille d'un bloc c'est son nombre d'instructions en block, mais ce n'est pas ce qu'il faut faire
+			taille_bloc += 1;
+		}
+		
+		code.add(_factory.createPop(0, taille_bloc));
+		return code;
 	}
 
 }
