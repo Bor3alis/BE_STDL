@@ -126,9 +126,10 @@ Program ::= UL_Identificateur:nom Bloc:bloc
 					System.out.println("Type KO");
 					
 				}
-				//TAMFactory fact = new TAMFactoryImpl();
+				bloc.allocateMemory(Register.ST,0);
+				TAMFactory fact = new TAMFactoryImpl();
 				
-				//System.out.println(bloc.getCode(fact));
+				System.out.println(bloc.getCode(fact));
 			:}
 		;
 
