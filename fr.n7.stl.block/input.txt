@@ -3,7 +3,7 @@ test1 {
 /* programme de test du TD4 */
 
 
-	int i = 1;
+/*	int i = 1;
 	const int j = 2;
    <int,int> p = <3,4>;
 
@@ -27,14 +27,22 @@ test1 {
 			print p;
 
 		 } 
-			print j; 
+			print j; */
 	
 /* programme de test du TD6 */
-	 int v = 1;
+/*	 int v = 1;
 	 int *ptr = &v;
 	 int w = *ptr;
 	 int t[] = new int[5];
-	 int z = t[3];
+	 int z = t[3]; */
+	
+	int somme(int a, int b) {
+		return a + b;
+	}
+	
+	void somme2(int a, int b) {
+		int x = a + b;
+	}
 	 
 	 
 	 
