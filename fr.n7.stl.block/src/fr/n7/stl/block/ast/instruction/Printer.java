@@ -35,7 +35,7 @@ public class Printer implements Instruction {
 	}
 	
 	/* (non-Javadoc)
-	 * @see fr.n7.stl.block.ast.instruction.Instruction#resolve(fr.n7.stl.block.ast.scope.Scope)
+	 * @see fr.n7.stl.block.ast.instruction.Instruction#resolve(fr.nnope7.stl.block.ast.scope.Scope)
 	 */
 	@Override
 	public boolean resolve(HierarchicalScope<Declaration> _scope) {
@@ -57,7 +57,7 @@ public class Printer implements Instruction {
 	 */
 	@Override
 	public int allocateMemory(Register _register, int _offset) {
-		throw new SemanticsUndefinedException("Semantics allocateMemory undefined in Printer.");
+		return 0;
 	}
 
 	/* (non-Javadoc)
@@ -66,6 +66,11 @@ public class Printer implements Instruction {
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
 		throw new SemanticsUndefinedException("Semantics getCode undefined in Printer.");
+	}
+
+	@Override
+	public Type getReturnType() {
+		return AtomicType.VoidType;
 	}
 
 }

@@ -16,6 +16,7 @@ import fr.n7.stl.block.ast.instruction.Return;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.scope.SymbolTable;
+import fr.n7.stl.block.ast.type.AtomicType;
 import fr.n7.stl.block.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
@@ -67,27 +68,7 @@ public class FunctionDeclaration implements Instruction, Declaration {
 		this.parameters = _parameters;
 		this.body = _body;
 	}
-	
-	/** Retourne tous les types retourné dans le block et dans ses sous blocks */
-	static Type getReturnBlockType(Type _type) {
-		Type res = _type;
-		List<Instruction> instructions = block.getInstructions();
-		
-		for(Instruction i : instructions) {
-			if (i instanceof Return) {
-				res.add(((Return) i).getValue().getType());
-			} else if (i instanceof Conditional) {
-				res.addAll(getReturnBlockType(((Conditional) i).getThenBranch()));
-				
-				if(((Conditional) i).getElseBranch().isPresent()) {
-					res.addAll(getReturnBlockType(((Conditional) i).getElseBranch().get()));
-				}
-			} else if (i instanceof Iteration) {
-				res.addAll(getReturnBlockType(((Iteration) i).getBody()));
-			} 
-		}
-		return res;
-	}
+
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
@@ -155,7 +136,7 @@ public class FunctionDeclaration implements Instruction, Declaration {
 	 */
 	@Override
 	public boolean checkType() {
-		throw new SemanticsUndefinedException( "Semantics checkType is undefined in FunctionDeclaration.");
+		return this.type.compatibleWith(getReturnType());
 	}
 
 	/* (non-Javadoc)
@@ -174,4 +155,10 @@ public class FunctionDeclaration implements Instruction, Declaration {
 		throw new SemanticsUndefinedException( "Semantics getCode is undefined in FunctionDeclaration.");
 	}
 
+	@Override
+	public Type getReturnType() {
+		return AtomicType.VoidType;
+	}
+
+	
 }

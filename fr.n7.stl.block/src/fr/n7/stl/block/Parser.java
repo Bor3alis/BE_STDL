@@ -23,6 +23,8 @@ import fr.n7.stl.block.ast.scope.*;
 import fr.n7.stl.block.ast.type.*;
 import fr.n7.stl.block.ast.type.declaration.*;
 import fr.n7.stl.util.*;
+import fr.n7.stl.tam.ast.impl.*;
+import fr.n7.stl.tam.ast.*;
 import java_cup.runtime.ComplexSymbolFactory.Location;
 import java_cup.runtime.XMLElement;
 
@@ -734,7 +736,11 @@ class CUP$Parser$actions {
 					System.out.println("Type OK");
 				} else {
 					System.out.println("Type KO");
+					
 				}
+				TAMFactory fact = new TAMFactoryImpl();
+				
+				System.out.println(bloc.getCode(fact));
 			
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("Program",0, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }

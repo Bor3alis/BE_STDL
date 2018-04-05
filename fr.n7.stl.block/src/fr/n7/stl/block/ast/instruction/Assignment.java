@@ -9,6 +9,7 @@ import fr.n7.stl.block.ast.expression.assignable.AssignableExpression;
 import fr.n7.stl.block.ast.instruction.declaration.ConstantDeclaration;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
+import fr.n7.stl.block.ast.type.AtomicType;
 import fr.n7.stl.block.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
@@ -85,7 +86,7 @@ public class Assignment implements Instruction, Expression {
 	 */
 	@Override
 	public int allocateMemory(Register _register, int _offset) {
-		throw new SemanticsUndefinedException( "Semantics allocateMemory is undefined in Assignment.");
+		return value.getType().length();
 	}
 
 	/* (non-Javadoc)
@@ -93,7 +94,13 @@ public class Assignment implements Instruction, Expression {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException( "Semantics getCode is undefined in Assignment.");
+		return (Fragment) _factory.createStoreI(this.value.getType().length());
+		
+	}
+
+	@Override
+	public Type getReturnType() {
+		return AtomicType.VoidType;
 	}
 
 }

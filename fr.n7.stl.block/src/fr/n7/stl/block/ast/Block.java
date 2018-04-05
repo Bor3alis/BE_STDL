@@ -82,7 +82,7 @@ public class Block {
 		return _result;
 
 	}
-	Type getReturnType() {
+	public Type getReturnType() {
 		Type res = AtomicType.VoidType;
 		for (Instruction i :  instructions) {
 			res =res.merge(i.getReturnType());	
