@@ -97,6 +97,7 @@ public class Assignment implements Instruction, Expression {
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
 		Fragment frag = new FragmentImpl();
+		frag.append(value.getCode(_factory));
 		TAMInstruction instr = _factory.createStoreI(this.value.getType().length());
 		frag.add(instr);
 		return frag;

@@ -15,6 +15,7 @@ import fr.n7.stl.block.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
+import fr.n7.stl.tam.ast.impl.FragmentImpl;
 
 /**
  * Implementation of the Abstract Syntax Tree node for a conditional instruction.
@@ -104,7 +105,26 @@ public class Conditional implements Instruction {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException( "Semantics getCode is undefined in Conditional.");
+		Fragment code = condition.getCode(_factory);
+		String labelElse;
+		String labelFin = "finIf".concat(String.valueOf(_factory.createLabelNumber()));
+		if (this.elseBranch.isPresent()) {
+			labelElse = "else".concat(String.valueOf(_factory.createLabelNumber()));
+		} else {
+			labelElse = labelFin;
+		}
+		
+		code.add(_factory.createJumpIf(labelElse, 0));
+		code.append(thenBranch.getCode(_factory));
+		if (this.elseBranch.isPresent()) {
+			code.add(_factory.createJump(labelFin));
+			code.addSuffix(labelElse);
+			code.append(this.elseBranch.get().getCode(_factory));
+			
+		}
+		code.addSuffix(labelFin);
+		return code;
+		
 	}
 
 	@Override
