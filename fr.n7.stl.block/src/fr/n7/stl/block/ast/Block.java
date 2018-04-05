@@ -134,6 +134,7 @@ public class Block {
 		}
 		
 		code.add(_factory.createPop(0, taille_bloc));
+		code.add(_factory.createHalt());
 		return code;
 	}
 	

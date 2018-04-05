@@ -14,6 +14,8 @@ import fr.n7.stl.block.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
+import fr.n7.stl.tam.ast.TAMInstruction;
+import fr.n7.stl.tam.ast.impl.FragmentImpl;
 import fr.n7.stl.util.Logger;
 
 /**
@@ -94,8 +96,10 @@ public class Assignment implements Instruction, Expression {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		return (Fragment) _factory.createStoreI(this.value.getType().length());
-		
+		Fragment frag = new FragmentImpl();
+		TAMInstruction instr = _factory.createStoreI(this.value.getType().length());
+		frag.add(instr);
+		return frag;
 	}
 
 	@Override
