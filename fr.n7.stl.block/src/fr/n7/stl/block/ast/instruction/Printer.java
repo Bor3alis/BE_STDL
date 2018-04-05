@@ -68,9 +68,8 @@ public class Printer implements Instruction {
 	// ATTENTION PRINT INT / FLOAT
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		//throw new SemanticsUndefinedException("Semantics getCode undefined in Printer.");
-		Fragment code = new FragmentImpl();
-		System.out.println(this.parameter);
+		
+		Fragment code = _factory.createFragment();
 		code.append(this.parameter.getCode(_factory));
 		
 		Type type = this.parameter.getType();
@@ -85,8 +84,6 @@ public class Printer implements Instruction {
 			code.add(Library.SOut);
 		} 
 		return code;
-		
-		
 		
 	}
 

@@ -3,18 +3,15 @@
  */
 package fr.n7.stl.block.ast;
 
-import java.util.Iterator;
 import java.util.List;
 
-import fr.n7.stl.block.ast.instruction.Conditional;
 import fr.n7.stl.block.ast.instruction.Instruction;
-import fr.n7.stl.block.ast.instruction.Iteration;
-import fr.n7.stl.block.ast.instruction.Return;
 import fr.n7.stl.block.ast.instruction.declaration.VariableDeclaration;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.scope.SymbolTable;
 import fr.n7.stl.block.ast.type.AtomicType;
+import fr.n7.stl.block.ast.type.CoupleType;
 import fr.n7.stl.block.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
@@ -129,10 +126,17 @@ public class Block {
 		Fragment code = new FragmentImpl();
 		
 		for(Instruction i : this.instructions) {
+
 			code.append(i.getCode(_factory));
 			
 			if(i instanceof VariableDeclaration) {
-				taille_bloc += 1;
+				Type type = ((VariableDeclaration)i).getType();
+				if (type instanceof CoupleType) {
+					taille_bloc += 2;
+				} else {
+					taille_bloc += 1;
+				}
+				
 			}
 			
 		}

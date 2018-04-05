@@ -10,6 +10,7 @@ import fr.n7.stl.block.ast.type.AtomicType;
 import fr.n7.stl.block.ast.type.CoupleType;
 import fr.n7.stl.block.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
+import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
 import fr.n7.stl.util.Logger;
 
@@ -66,7 +67,12 @@ public class Second implements Expression {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException("Semantics getCode undefined in Second.");
+		Fragment _result = _factory.createFragment();
+		_result.add(_factory.createPush(this.target.getType().length()));
+		_result.add(_factory.createLoad(Register.SB, 0,this.target.getType().length()));
+	//	_result.add(_factory.createPop(1, 1));
+		_result.add(_factory.createStore(Register.SB,3, this.target.getType().length()));
+		return _result;
 	}
 
 }
