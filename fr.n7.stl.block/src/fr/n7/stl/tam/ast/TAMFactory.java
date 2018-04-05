@@ -239,4 +239,6 @@ public interface TAMFactory {
 	
 	public int createLabelNumber();
 
+
+
 }
