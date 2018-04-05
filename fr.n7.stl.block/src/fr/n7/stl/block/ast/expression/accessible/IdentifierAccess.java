@@ -6,6 +6,7 @@ package fr.n7.stl.block.ast.expression.accessible;
 import fr.n7.stl.block.ast.expression.AbstractIdentifier;
 import fr.n7.stl.block.ast.expression.AbstractUse;
 import fr.n7.stl.block.ast.instruction.declaration.ConstantDeclaration;
+import fr.n7.stl.block.ast.instruction.declaration.ParameterDeclaration;
 import fr.n7.stl.block.ast.instruction.declaration.VariableDeclaration;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
@@ -54,7 +55,13 @@ public class IdentifierAccess extends AbstractIdentifier implements AccessibleEx
 					// TODO : refactor the management of Constants
 					this.expression = new ConstantUse((ConstantDeclaration) _declaration);
 					return true;
-				} else {
+				} else 
+					if(_declaration instanceof ParameterDeclaration) {
+						this.expression = new ParameterUse((ParameterDeclaration) _declaration);
+						return true;
+					}
+					else
+				{
 					Logger.error("The declaration for " + this.name + " is of the wrong kind.");
 					return false;
 				}

@@ -738,9 +738,9 @@ class CUP$Parser$actions {
 					System.out.println("Type KO");
 					
 				}
-				TAMFactory fact = new TAMFactoryImpl();
+				//TAMFactory fact = new TAMFactoryImpl();
 				
-				System.out.println(bloc.getCode(fact));
+				//System.out.println(bloc.getCode(fact));
 			
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("Program",0, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }

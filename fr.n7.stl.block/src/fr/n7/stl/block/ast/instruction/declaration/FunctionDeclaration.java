@@ -116,7 +116,7 @@ public class FunctionDeclaration implements Instruction, Declaration {
 		while(it.hasNext()) {
 			declaration_parametre = it.next();
 			if (tableBody.accepts(declaration_parametre)) {
-				_scope.register(declaration_parametre);
+				tableBody.register(declaration_parametre);
 				args_resolve = true;
 			}else{
 				args_resolve = false;
@@ -136,7 +136,7 @@ public class FunctionDeclaration implements Instruction, Declaration {
 	 */
 	@Override
 	public boolean checkType() {
-		return this.type.compatibleWith(getReturnType());
+		return this.type.compatibleWith(this.body.getReturnType());
 	}
 
 	/* (non-Javadoc)
