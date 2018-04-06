@@ -65,7 +65,10 @@ public class VariableAssignment extends AbstractIdentifier implements Assignable
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		return (Fragment) _factory.createLoadA(Register.LB, this.declaration.getOffset());
+		Fragment code = _factory.createFragment();
+		code.add(_factory.createLoadA(Register.LB, this.declaration.getOffset()));
+		return code;
+		
 		
 	}
 
