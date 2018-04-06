@@ -130,12 +130,7 @@ public class Block {
 			code.append(i.getCode(_factory));
 			
 			if(i instanceof VariableDeclaration) {
-				Type type = ((VariableDeclaration)i).getType();
-				if (type instanceof CoupleType) {
-					taille_bloc += 2;
-				} else {
-					taille_bloc += 1;
-				}
+				taille_bloc += ((VariableDeclaration)i).getType().length();
 				
 			}
 			
