@@ -10,6 +10,7 @@ import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
+import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
 import fr.n7.stl.util.Logger;
 
@@ -64,7 +65,7 @@ public class VariableAssignment extends AbstractIdentifier implements Assignable
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		return (Fragment) _factory.createLoadA(this.declaration.getRegister(), this.declaration.getOffset());
+		return (Fragment) _factory.createLoadA(Register.LB, this.declaration.getOffset());
 		
 	}
 

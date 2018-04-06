@@ -118,11 +118,11 @@ public class Conditional implements Instruction {
 		code.append(thenBranch.getCode(_factory));
 		if (this.elseBranch.isPresent()) {
 			code.add(_factory.createJump(labelFin));
-			code.addSuffix(labelElse);
+			code.addSuffix(labelElse.concat(":"));
 			code.append(this.elseBranch.get().getCode(_factory));
 			
 		}
-		code.addSuffix(labelFin);
+		code.addSuffix(labelFin.concat(":"));
 		return code;
 		
 	}

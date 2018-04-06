@@ -123,7 +123,7 @@ public class Block {
 	 */
 	public Fragment getCode(TAMFactory _factory) {
 		int taille_bloc = 0;
-		Fragment code = new FragmentImpl();
+		Fragment code = _factory.createFragment();;
 		
 		for(Instruction i : this.instructions) {
 
@@ -135,9 +135,7 @@ public class Block {
 			}
 			
 		}
-		
 		code.add(_factory.createPop(0, taille_bloc));
-		code.add(_factory.createHalt());
 		return code;
 	}
 	

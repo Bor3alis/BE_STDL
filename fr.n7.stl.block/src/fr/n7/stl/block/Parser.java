@@ -25,6 +25,7 @@ import fr.n7.stl.block.ast.type.declaration.*;
 import fr.n7.stl.util.*;
 import fr.n7.stl.tam.ast.impl.*;
 import fr.n7.stl.tam.ast.*;
+import java.io.FileWriter;
 import java_cup.runtime.ComplexSymbolFactory.Location;
 import java_cup.runtime.XMLElement;
 
@@ -739,9 +740,15 @@ class CUP$Parser$actions {
 					
 				}
 				bloc.allocateMemory(Register.ST,0);
-				TAMFactory fact = new TAMFactoryImpl();
 				
-				System.out.println(bloc.getCode(fact));
+				// Creation du fichier TAM généré
+				File fichier = new File(nom + ".tam");
+				FileWriter fw = new FileWriter (fichier);
+				TAMFactory fact = new TAMFactoryImpl();
+				Fragment frag = bloc.getCode(fact);
+				frag.add(fact.createHalt());
+				fw.write(frag.toString());
+				fw.close();
 			
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("Program",0, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
