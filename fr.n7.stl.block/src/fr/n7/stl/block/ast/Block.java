@@ -3,17 +3,15 @@
  */
 package fr.n7.stl.block.ast;
 
-import java.util.Iterator;
 import java.util.List;
 
-import fr.n7.stl.block.ast.instruction.Conditional;
 import fr.n7.stl.block.ast.instruction.Instruction;
-import fr.n7.stl.block.ast.instruction.Iteration;
-import fr.n7.stl.block.ast.instruction.Return;
+import fr.n7.stl.block.ast.instruction.declaration.VariableDeclaration;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.scope.SymbolTable;
 import fr.n7.stl.block.ast.type.AtomicType;
+import fr.n7.stl.block.ast.type.CoupleType;
 import fr.n7.stl.block.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
@@ -128,9 +126,14 @@ public class Block {
 		Fragment code = new FragmentImpl();
 		
 		for(Instruction i : this.instructions) {
+
 			code.append(i.getCode(_factory));
-			// On considère que la taille d'un bloc c'est son nombre d'instructions en block, mais ce n'est pas ce qu'il faut faire
-			taille_bloc += 1;
+			
+			if(i instanceof VariableDeclaration) {
+				taille_bloc += ((VariableDeclaration)i).getType().length();
+				
+			}
+			
 		}
 		
 		code.add(_factory.createPop(0, taille_bloc));

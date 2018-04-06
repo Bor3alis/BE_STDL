@@ -30,7 +30,11 @@ public class ArrayAccess extends AbstractArray implements AccessibleExpression {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException( "getCode is undefined in ArrayAccess.");
+		Fragment code = _factory.createFragment();
+		code.append(this.array.getCode(_factory));
+		code.add(_factory.createLoadI(this.array.getType().length())); // A VERIFIER
+		
+		return code;
 	}
 
 }

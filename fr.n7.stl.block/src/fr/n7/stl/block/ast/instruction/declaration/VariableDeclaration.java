@@ -58,7 +58,6 @@ public class VariableDeclaration implements Declaration, Instruction {
 	 */
 	public VariableDeclaration(String _name, Type _type, Expression _value) {
 		this.name = _name;
-		System.out.println("ffffffffff" + _type);
 		this.type = _type;
 		this.value = _value;
 	}
@@ -156,9 +155,11 @@ public class VariableDeclaration implements Declaration, Instruction {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		Fragment code = new FragmentImpl();
+	
+		Fragment code = _factory.createFragment();
 		code.add(_factory.createPush(this.getType().length()));	
 		code.append(this.value.getCode(_factory));
+		code.add(_factory.createStore(this.register, this.offset, this.getType().length()));
 		code.addComment("VariableDeclaration Fin");
 		return code;
 	}

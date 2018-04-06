@@ -3,15 +3,17 @@
  */
 package fr.n7.stl.block.ast.instruction;
 
-import fr.n7.stl.block.ast.SemanticsUndefinedException;
 import fr.n7.stl.block.ast.expression.Expression;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.type.AtomicType;
+import fr.n7.stl.block.ast.type.CoupleType;
 import fr.n7.stl.block.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
+import fr.n7.stl.tam.ast.Library;
 import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
+import fr.n7.stl.tam.ast.impl.FragmentImpl;
 
 /**
  * Implementation of the Abstract Syntax Tree node for a printer instruction.
@@ -63,9 +65,26 @@ public class Printer implements Instruction {
 	/* (non-Javadoc)
 	 * @see fr.n7.stl.block.ast.Instruction#getCode(fr.n7.stl.tam.ast.TAMFactory)
 	 */
+	// ATTENTION PRINT INT / FLOAT
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException("Semantics getCode undefined in Printer.");
+		
+		Fragment code = _factory.createFragment();
+		code.append(this.parameter.getCode(_factory));
+		
+		Type type = this.parameter.getType();
+		
+		if(type.equals(AtomicType.BooleanType)) {
+			code.add(Library.BOut);
+		} else if(type.equals(AtomicType.CharacterType)) {
+			code.add(Library.COut);
+		} else if (type.equals(AtomicType.IntegerType)) {
+			code.add(Library.IOut);
+		} else if(type.equals(AtomicType.StringType)) {
+			code.add(Library.SOut);
+		} 
+		return code;
+		
 	}
 
 	@Override

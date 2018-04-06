@@ -8,6 +8,7 @@ import fr.n7.stl.block.ast.instruction.declaration.VariableDeclaration;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.TAMFactory;
+import fr.n7.stl.tam.ast.impl.FragmentImpl;
 
 /**
  * Implementation of the Abstract Syntax Tree node for a variable use expression.
@@ -46,5 +47,11 @@ public class VariableUse extends AbstractUse {
 		_result.addComment(this.toString());
 		return _result;
 	}
+	
+	/* 		Fragment code = new FragmentImpl();
+		code.add(_factory.createPush(this.getType().length()));	
+		code.append(this.value.getCode(_factory));
+		code.addComment("VariableDeclaration Fin");
+		return code; */
 
 }
