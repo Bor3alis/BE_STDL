@@ -68,10 +68,8 @@ public class Second implements Expression {
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
 		Fragment _result = _factory.createFragment();
-		_result.add(_factory.createPush(this.target.getType().length()));
-		_result.add(_factory.createLoad(Register.SB, 0,this.target.getType().length()));
-	//	_result.add(_factory.createPop(1, 1));
-		_result.add(_factory.createStore(Register.SB,3, this.target.getType().length()));
+		_result.append(this.target.getCode(_factory));
+		_result.add(_factory.createPop(((CoupleType)this.target.getType()).getSecond().length(),(((CoupleType) this.target.getType()).getFirst()).length())); 
 		return _result;
 	}
 

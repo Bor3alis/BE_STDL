@@ -159,7 +159,7 @@ public class VariableDeclaration implements Declaration, Instruction {
 		Fragment code = _factory.createFragment();
 		code.add(_factory.createPush(this.getType().length()));	
 		code.append(this.value.getCode(_factory));
-		code.add(_factory.createStore(Register.LB, this.offset, this.getType().length()));
+		code.add(_factory.createStore(this.register, this.offset, this.getType().length()));
 		code.addComment("VariableDeclaration Fin");
 		return code;
 	}
