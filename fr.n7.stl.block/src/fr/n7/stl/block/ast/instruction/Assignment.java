@@ -5,6 +5,7 @@ package fr.n7.stl.block.ast.instruction;
 
 import fr.n7.stl.block.ast.SemanticsUndefinedException;
 import fr.n7.stl.block.ast.expression.Expression;
+import fr.n7.stl.block.ast.expression.accessible.AccessibleExpression;
 import fr.n7.stl.block.ast.expression.assignable.AssignableExpression;
 import fr.n7.stl.block.ast.instruction.declaration.ConstantDeclaration;
 import fr.n7.stl.block.ast.scope.Declaration;
@@ -96,12 +97,22 @@ public class Assignment implements Instruction, Expression {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		Fragment frag = new FragmentImpl();
+		Fragment frag = _factory.createFragment();
 		Fragment code_suite = assignable.getCode(_factory);
 		
+		
 		frag.append(value.getCode(_factory));
+		
+		// on récupère la valeur de v à partir de son adresse
+		if (this.value instanceof AccessibleExpression)
+			frag.add(_factory.createLoadI(this.value.getType().length()));
+		
+		
 		TAMInstruction instr = _factory.createStoreI(this.value.getType().length());
 		frag.append(code_suite);
+		
+	//	frag.add(_factory.createLoadI(this.value.getType().length()));
+		
 		frag.add(instr);
 		
 		return frag;
