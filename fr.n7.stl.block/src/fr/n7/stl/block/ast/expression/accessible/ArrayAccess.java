@@ -35,13 +35,16 @@ public class ArrayAccess extends AbstractArray implements AccessibleExpression {
 		Fragment code = _factory.createFragment();
 		
 		code.append(this.array.getCode(_factory));
+		code.add(_factory.createLoadI(1));
 		code.append(this.index.getCode(_factory));
+
 		code.add(_factory.createLoadL(this.array.getType().length()));
 
 		code.add(Library.IMul);
 		code.add(Library.IAdd);
-		//code.add(_factory.createLoadI(this.array.getType().length())); 
-		
+
+		//code.add(_factory.createLoadI(this.array.getType().length()));
+
 		return code;
 	}
 

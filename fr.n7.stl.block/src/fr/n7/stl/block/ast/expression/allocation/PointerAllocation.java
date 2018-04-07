@@ -10,6 +10,7 @@ import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.type.PointerType;
 import fr.n7.stl.block.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
+import fr.n7.stl.tam.ast.Library;
 import fr.n7.stl.tam.ast.TAMFactory;
 
 /**
@@ -54,7 +55,17 @@ public class PointerAllocation implements Expression {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException( "Semantics getCode is undefined in PointerAllocation.");
+
+		//throw new SemanticsUndefinedException( "Semantics getCode is undefined in ArrayAllocation.");
+		Fragment _result = _factory.createFragment();
+
+		// chargement taille des éléments
+		_result.add(_factory.createLoadL(this.element.length()));
+
+		// chargement taille du tableau
+		_result.add(Library.MAlloc);
+
+		return _result;
 	}
 
 }
