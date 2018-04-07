@@ -16,8 +16,15 @@ int t[] = new int[5];
 	 //point.y = 2;
 	 
 	 int d = 42;
+	 int e = 43;
+	 int f = 44;
+	 int g = 45;
 	//int c =  (int) d;
-	 d = point.y;
+	 d = point.x;
+	 e = point.y;
+	 f = point.z;
+	 g = point.o;
+
 	
 	
 	// TEST PRINT 
