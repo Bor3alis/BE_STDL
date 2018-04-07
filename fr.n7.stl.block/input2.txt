@@ -1,0 +1,27 @@
+test {
+
+	// TEST COUPLE
+	/*<int,int> c = <47,53>;
+	int a = fst c;
+	int b = snd c; */
+	
+	// TEST ARRAY
+/*	int t[] = new int[5];
+	int i = 4;
+	t[3] = 2;
+	i = t[3]; */
+	
+	// TEST ENREGISTREMENT
+	 struct Pointi {int x; int y;} point  = {3,4};
+	 //point.y = 2;
+	 
+	 int d = 3;
+	int c =  (int) d;
+	// d = point.x;
+	
+	
+	// TEST PRINT 
+	/* int z = 4; */	
+
+	
+}

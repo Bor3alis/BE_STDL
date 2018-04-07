@@ -111,7 +111,7 @@ public class Assignment implements Instruction, Expression {
 		TAMInstruction instr = _factory.createStoreI(this.value.getType().length());
 		frag.append(code_suite);
 		
-	//	frag.add(_factory.createLoadI(this.value.getType().length()));
+
 		
 		frag.add(instr);
 		

@@ -32,6 +32,7 @@ public class FieldAccess extends AbstractField implements Expression {
 	
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
+<<<<<<< HEAD
 		FieldDeclaration current = ((RecordType)this.record.getType()).get(this.name);
 		
 		FieldDeclaration previous_field = ((RecordType)this.record.getType()).get_previousField(this.name);
@@ -43,6 +44,16 @@ public class FieldAccess extends AbstractField implements Expression {
 		code.add(_factory.createPop(this.field.getType().length(),next_field.getType().length()));
 		return code;
 		
+=======
+		Fragment code = _factory.createFragment();
+		
+		//code.add(_factory.createPop(0,this.record.))
+		
+		
+		
+		
+		return code;
+>>>>>>> f6118c271c2d84c6414cdf3f5590e611a70ac2bc
 	}
 
 }

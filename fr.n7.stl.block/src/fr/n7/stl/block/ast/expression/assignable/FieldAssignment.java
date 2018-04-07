@@ -33,7 +33,10 @@ public class FieldAssignment extends AbstractField implements AssignableExpressi
 		Fragment code = _factory.createFragment();
 		code.append(this.record.getCode(_factory));
 		
-		code.add(_factory.createLoadL(this.field.getType().length()));
+		System.out.println(this.field.getOffset());
+		
+		
+		code.add(_factory.createLoadL(this.field.getOffset()));
 		code.add(Library.IAdd);
 		
 		return code;
