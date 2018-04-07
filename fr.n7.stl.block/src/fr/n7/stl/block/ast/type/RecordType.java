@@ -131,6 +131,26 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 			return null;
 		}
 	}
+	
+	public FieldDeclaration get_previousField(String _name){
+		int idx = this.fields.indexOf(_name);
+		if(idx <= 0) {
+			return null;
+		} else {
+			return this.fields.get(idx -1);
+		}
+	}
+	
+	public FieldDeclaration get_nextField(String _name) {
+		int idx = this.fields.indexOf(_name);
+		if(idx < 0 || idx+1 == this.fields.size()){
+			return null;
+		} else {
+			return this.fields.get(idx + 1);
+		}
+	}
+	
+	
 
 	/* (non-Javadoc)
 	 * @see fr.n7.stl.block.ast.Scope#contains(java.lang.String)
@@ -139,7 +159,11 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 	public boolean contains(String _name) {
 		boolean _result = false;
 		Iterator<FieldDeclaration> _iter = this.fields.iterator();
+		
 		while (_iter.hasNext() && (! _result)) {
+			if(_iter.hasNext()) 
+			
+			
 			_result = _result || _iter.next().getName().contentEquals(_name);
 		}
 		return _result;
