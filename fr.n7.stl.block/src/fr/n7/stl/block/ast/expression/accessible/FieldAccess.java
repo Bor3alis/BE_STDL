@@ -30,7 +30,14 @@ public class FieldAccess extends AbstractField implements Expression {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException( "getCode is undefined in FieldAccess.");
+		Fragment code = _factory.createFragment();
+		
+		//code.add(_factory.createPop(0,this.record.))
+		
+		
+		
+		
+		return code;
 	}
 
 }
