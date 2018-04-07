@@ -38,16 +38,19 @@ public class FieldAccess extends AbstractField implements Expression {
 		
 		Fragment code = _factory.createFragment();
 		code.append(this.record.getCode(_factory));
-		
-	/*	if(! (previous_field == null)) {
+
+		code.add(_factory.createLoadI(this.record.getType().length()));
+
+		if(! (previous_field == null)) {
 			System.out.println("AAAAAA");
-			code.add(_factory.createPop(0, previous_field.getType().length()));
+			code.add(_factory.createPop(this.field.getType().length(), previous_field.getType().length()));
 		}
 		
 		if(! (next_field == null)) {
 			System.out.println("BBBBBB");
-			code.add(_factory.createPop(this.field.getType().length(),next_field.getType().length()));
-		} */
+			code.add(_factory.createPop(0,next_field.getType().length()));
+		}
+
 		
 		
 		return code;
