@@ -132,8 +132,8 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 		}
 	}
 	
-	public FieldDeclaration get_previousField(String _name){
-		int idx = this.fields.indexOf(_name);
+	public FieldDeclaration get_previousField(FieldDeclaration _field){
+		int idx = this.fields.indexOf(_field);
 		if(idx <= 0) {
 			return null;
 		} else {
@@ -141,8 +141,8 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 		}
 	}
 	
-	public FieldDeclaration get_nextField(String _name) {
-		int idx = this.fields.indexOf(_name);
+	public FieldDeclaration get_nextField(FieldDeclaration _field) {
+		int idx = this.fields.indexOf(_field);
 		if(idx < 0 || idx+1 == this.fields.size()){
 			return null;
 		} else {
