@@ -11,6 +11,7 @@ import fr.n7.stl.block.ast.type.ArrayType;
 import fr.n7.stl.block.ast.type.AtomicType;
 import fr.n7.stl.block.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
+import fr.n7.stl.tam.ast.Library;
 import fr.n7.stl.tam.ast.TAMFactory;
 import fr.n7.stl.util.Logger;
 
@@ -62,11 +63,19 @@ public class ArrayAllocation implements Expression {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException( "Semantics getCode is undefined in ArrayAllocation.");
-		/*Fragment _result = _factory.createFragment();
-		_result.add(_factory.createPush(1));
+		//throw new SemanticsUndefinedException( "Semantics getCode is undefined in ArrayAllocation.");
+		Fragment _result = _factory.createFragment();
+		
+		// chargement taille des éléments
 		_result.add(_factory.createLoadL(this.element.length()));
-		_result.add(_factory.createLoadL(size.))); */
+		
+		// chargement taille du tableau
+		_result.append(this.size.getCode(_factory));
+		
+		_result.add(Library.IMul);
+		_result.add(Library.MAlloc);
+		
+		return _result;
 	}
 
 }
