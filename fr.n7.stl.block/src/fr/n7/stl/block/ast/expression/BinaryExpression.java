@@ -141,11 +141,15 @@ public class BinaryExpression implements Expression {
 		if (this.left instanceof AccessibleExpression) {
 			_result.add(_factory.createLoadI(this.left.getType().length()));
 		}
+
 		_result.append(this.right.getCode(_factory));
+
 		if (this.right instanceof AccessibleExpression) {
 			_result.add(_factory.createLoadI(this.right.getType().length()));
 		}
+
 		_result.add(TAMFactory.createBinaryOperator(this.operator));
+
 		return _result;
 	}
 

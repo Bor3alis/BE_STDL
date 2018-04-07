@@ -7,6 +7,7 @@ import fr.n7.stl.block.ast.expression.AbstractUse;
 import fr.n7.stl.block.ast.instruction.declaration.VariableDeclaration;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.tam.ast.Fragment;
+import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
 import fr.n7.stl.tam.ast.impl.FragmentImpl;
 
@@ -39,12 +40,16 @@ public class VariableUse extends AbstractUse {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		Fragment _result = _factory.createFragment();
+		/*Fragment _result = _factory.createFragment();
 		_result.add(_factory.createLoad(
-				this.declaration.getRegister(), 
+				Register.LB,
 				this.declaration.getOffset(),
 				this.declaration.getType().length()));
 		_result.addComment(this.toString());
+		return _result;*/
+
+		Fragment _result = _factory.createFragment();
+		_result.add(_factory.createLoadL(this.declaration.getOffset()));
 		return _result;
 	}
 	

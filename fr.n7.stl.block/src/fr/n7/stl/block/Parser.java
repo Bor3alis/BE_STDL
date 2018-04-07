@@ -739,7 +739,7 @@ class CUP$Parser$actions {
 					System.out.println("Type KO");
 					
 				}
-				bloc.allocateMemory(Register.ST,0);
+				bloc.allocateMemory(Register.SB,0);
 				
 				// Creation du fichier TAM généré
 				File fichier = new File(nom + ".tam");

@@ -160,7 +160,7 @@ public class VariableDeclaration implements Declaration, Instruction {
 		code.add(_factory.createPush(this.getType().length()));	
 		code.append(this.value.getCode(_factory));
 		code.add(_factory.createStore(Register.LB, this.offset, this.getType().length()));
-		code.addComment("VariableDeclaration Fin");
+		code.addComment("VariableDeclaration");
 		return code;
 	}
 

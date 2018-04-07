@@ -127,7 +127,7 @@ Program ::= UL_Identificateur:nom Bloc:bloc
 					System.out.println("Type KO");
 					
 				}
-				bloc.allocateMemory(Register.ST,0);
+				bloc.allocateMemory(Register.SB,0);
 				
 				// Creation du fichier TAM généré
 				File fichier = new File(nom + ".tam");
