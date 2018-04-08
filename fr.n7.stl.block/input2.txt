@@ -19,17 +19,23 @@ int t[] = new int[5];
 	 
 	//int d = 42;
 //	d = point.y;
-/*	int a = 1000;
+	/*int a = 1000;
 	int b = 10993;
 	int c = 477;
 	
-	a = c;
-	b = c; */
 
-	/* struct Pointi {int x; int y; int z; int o;} point  = {3,4,5,6};
+	
+	a = c;
+	b = c; 
+
+	print a;
+	print c; */
+	
+/* struct Pointi {int x; int y; int z; int o;} point  = {3,4,5,6};
 	 //point.y = 2;
-	 
-	int d = 42;
+	  
+	// const int az = 3;
+	 int d = 42;
 	 int e = 43;
 	 int f = 44;
 	 int g = 45;
@@ -38,7 +44,6 @@ int t[] = new int[5];
 	 e = point.y;
 	 f = point.z;
 	 g = point.o; */
-
 
 	
 	
