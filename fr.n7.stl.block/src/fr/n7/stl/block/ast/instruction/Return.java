@@ -74,7 +74,7 @@ public class Return implements Instruction {
 	public Fragment getCode(TAMFactory _factory) {
 		Fragment code = _factory.createFragment();
 		
-		code.append(this.value.getCode(_factory));
+		code.append(this.value.getCode(_factory)); // A VERIFIER
 		code.add(_factory.createReturn(this.value.getType().length(), 0)); // DEPLACEMENT ???
 		
 		return code;
