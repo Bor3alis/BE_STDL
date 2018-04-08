@@ -113,8 +113,12 @@ public class FunctionDeclaration implements Instruction, Declaration {
 		// creer une nouvelle table des symboles pour le body 
 		HierarchicalScope<Declaration> tableBody= new SymbolTable(_scope);
 		Iterator<ParameterDeclaration> it = this.parameters.iterator();
+		int dep = 0;
 		while(it.hasNext()) {
+			dep += 1;
+			
 			declaration_parametre = it.next();
+			declaration_parametre.setOffset(dep);
 			if (tableBody.accepts(declaration_parametre)) {
 				tableBody.register(declaration_parametre);
 				args_resolve = true;

@@ -83,8 +83,10 @@ public class FunctionType implements Type {
 	@Override
 	public boolean resolve(HierarchicalScope<Declaration> _scope) {
 		boolean _result = true;
+		
 		for(Type p : parameters) {
 			_result &= p.resolve(_scope);
+			
 		}
 		_result &= result.resolve(_scope);
 		return _result;

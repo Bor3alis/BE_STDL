@@ -32,7 +32,6 @@ public class FieldAccess extends AbstractField implements Expression {
 	
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		int cpt_remove = 0;
 		
 		FieldDeclaration previous_field = ((RecordType)this.record.getType()).get_previousField(this.field);
 		FieldDeclaration next_field = ((RecordType)this.record.getType()).get_nextField(this.field);
@@ -42,8 +41,6 @@ public class FieldAccess extends AbstractField implements Expression {
 		code.add(_factory.createLoadI(this.record.getType().length()));
 
 
-
-
 		while (! (next_field == null)) {
 			System.out.println("BBBBBB");
 			code.add(_factory.createPop(0,next_field.getType().length()));
@@ -51,24 +48,11 @@ public class FieldAccess extends AbstractField implements Expression {
 		}
 		while (! (previous_field == null)) {
 			System.out.println("AAAAAA");
-<<<<<<< HEAD
-			code.add(_factory.createPop(0, previous_field.getType().length()));
-			
-			previous_field = ((RecordType)this.record.getType()).get_previousField(previous_field);
-=======
 			code.add(_factory.createPop(this.field.getType().length(), previous_field.getType().length()));
 			previous_field = ((RecordType)this.record.getType()).get_previousField(previous_field);
-
->>>>>>> ccd9238a225005762d14428a4bc567ac28c749b2
 		}
-		
 
-
-		
-		//code.add(_factory.createPop(this.field.getType().length(),next_field.getType().length()));
-		
 		return code;
-		
 
 }
 }
