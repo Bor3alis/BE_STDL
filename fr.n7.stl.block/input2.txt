@@ -5,18 +5,39 @@ test {
 	int a = fst c;
 	int b = snd c; */
 	
+<<<<<<< HEAD
 	// TEST ARRAY
 	/*int t[] = new int[5];
+=======
+	/*// TEST ARRAY
+int t[] = new int[5];
+>>>>>>> ccd9238a225005762d14428a4bc567ac28c749b2
 	int i = 4;
 	t[3] = 2;
-	i = t[3]; */
+	i = t[3];*/
 	
 	// TEST ENREGISTREMENT
+<<<<<<< HEAD
 	struct Pointi {int x; int y; int z; int o;} point  = {3,4,6,7};
 	// point.y = 2;
 	 
 	int d = 42;
 	d = point.y;
+=======
+	 struct Pointi {int x; int y; int z; int o;} point  = {3,4,5,6};
+	 //point.y = 2;
+	 
+	 int d = 42;
+	 int e = 43;
+	 int f = 44;
+	 int g = 45;
+	//int c =  (int) d;
+	 d = point.x;
+	 e = point.y;
+	 f = point.z;
+	 g = point.o;
+
+>>>>>>> ccd9238a225005762d14428a4bc567ac28c749b2
 	
 	
 	// TEST PRINT 

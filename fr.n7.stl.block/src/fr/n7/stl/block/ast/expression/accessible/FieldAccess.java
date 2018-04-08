@@ -39,20 +39,31 @@ public class FieldAccess extends AbstractField implements Expression {
 		
 		Fragment code = _factory.createFragment();
 		code.append(this.record.getCode(_factory));
-		
+		code.add(_factory.createLoadI(this.record.getType().length()));
+
+
+
+
+		while (! (next_field == null)) {
+			System.out.println("BBBBBB");
+			code.add(_factory.createPop(0,next_field.getType().length()));
+			next_field = ((RecordType)this.record.getType()).get_nextField(next_field);
+		}
 		while (! (previous_field == null)) {
 			System.out.println("AAAAAA");
+<<<<<<< HEAD
 			code.add(_factory.createPop(0, previous_field.getType().length()));
 			
 			previous_field = ((RecordType)this.record.getType()).get_previousField(previous_field);
+=======
+			code.add(_factory.createPop(this.field.getType().length(), previous_field.getType().length()));
+			previous_field = ((RecordType)this.record.getType()).get_previousField(previous_field);
+
+>>>>>>> ccd9238a225005762d14428a4bc567ac28c749b2
 		}
 		
-		while (! (next_field == null)) {
-			System.out.println("BBBBBB");
-			code.add(_factory.createPop(this.field.getType().length(),next_field.getType().length()));
-			
-			next_field = ((RecordType)this.record.getType()).get_nextField(next_field);
-		} 
+
+
 		
 		//code.add(_factory.createPop(this.field.getType().length(),next_field.getType().length()));
 		
