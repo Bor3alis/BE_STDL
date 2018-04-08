@@ -115,9 +115,11 @@ public class FunctionDeclaration implements Instruction, Declaration {
 		Iterator<ParameterDeclaration> it = this.parameters.iterator();
 		int dep = 0;
 		while(it.hasNext()) {
-			dep += 1;			
+				
 			declaration_parametre = it.next();
 			declaration_parametre.setOffset(dep);
+			dep += 1;
+			
 			if (tableBody.accepts(declaration_parametre)) {
 				tableBody.register(declaration_parametre);
 				args_resolve = true;
@@ -156,10 +158,8 @@ public class FunctionDeclaration implements Instruction, Declaration {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-
 		Fragment code = _factory.createFragment();
-		code.append(this.body.getCode(_factory));
-		
+		code.append(this.body.getCode(_factory));	
 		return code;
 	}
 

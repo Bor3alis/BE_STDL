@@ -63,7 +63,8 @@ public class Return implements Instruction {
 	 */
 	@Override
 	public int allocateMemory(Register _register, int _offset) {
-		throw new SemanticsUndefinedException("Semantics allocateMemory undefined in Return.");
+	
+		return this.value.getType().length();
 	}
 
 	/* (non-Javadoc)
@@ -71,7 +72,12 @@ public class Return implements Instruction {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException("Semantics getCode undefined in Return.");
+		Fragment code = _factory.createFragment();
+		
+		code.append(this.value.getCode(_factory));
+		code.add(_factory.createReturn(this.value.getType().length(), 0)); // DEPLACEMENT ???
+		
+		return code;
 	}
 
 }
