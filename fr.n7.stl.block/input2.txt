@@ -11,7 +11,7 @@ int t[] = new int[5];
 	t[3] = 2;
 	i = t[3];*/
 	
-	// TEST ENREGISTREMENT
+	/*// TEST ENREGISTREMENT
 	 struct Pointi {int x; int y; int z; int o;} point  = {3,4,5,6};
 	 //point.y = 2;
 	 
@@ -23,12 +23,23 @@ int t[] = new int[5];
 	 d = point.x;
 	 e = point.y;
 	 f = point.z;
-	 g = point.o;
+	 g = point.o;*/
 
 	
 	
 	// TEST PRINT 
-	/* int z = 4; */	
+	/* int z = 4; */
+
+	// TEST POINTEURS
+	int *p = new int();
+	*p = 4;
+	int k = 6;
+	int *ptr = new int();
+	*ptr = 2;
+
+	int *ptr2 = new int();
+
+
 
 	
 }
