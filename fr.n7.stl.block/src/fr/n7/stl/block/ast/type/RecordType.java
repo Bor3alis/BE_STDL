@@ -31,6 +31,7 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 	 * @param _fields Sequence of fields to initialize the content of the record type.
 	 */
 	public RecordType(String _name, Iterable<FieldDeclaration> _fields) {
+		System.out.println("RECORDTYPE");
 		this.name = _name;
 		this.fields = new LinkedList<FieldDeclaration>();
 		for (FieldDeclaration _field : _fields) {

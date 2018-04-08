@@ -36,7 +36,7 @@ public class ParameterDeclaration implements Declaration {
 	public ParameterDeclaration(String _name, Type _type) {
 		this.name = _name;
 		this.type = _type;
-		this.offset = -1; // This value should never occur...
+		//this.offset = -1; // This value should never occur...
 	}
 
 	/* (non-Javadoc)
@@ -70,5 +70,11 @@ public class ParameterDeclaration implements Declaration {
 	public int getOffset() {
 		return this.offset;
 	}
+
+	public void setOffset(int offset) {
+		this.offset = offset;
+	}
+	
+	
 
 }
