@@ -38,6 +38,7 @@ public class FieldAssignment extends AbstractField implements AssignableExpressi
 		
 		code.add(_factory.createLoadL(this.field.getOffset()));
 		code.add(Library.IAdd);
+
 		
 		return code;
 	}
