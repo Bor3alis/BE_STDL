@@ -31,7 +31,6 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 	 * @param _fields Sequence of fields to initialize the content of the record type.
 	 */
 	public RecordType(String _name, Iterable<FieldDeclaration> _fields) {
-		System.out.println("RECORDTYPE");
 		this.name = _name;
 		this.fields = new LinkedList<FieldDeclaration>();
 		for (FieldDeclaration _field : _fields) {
@@ -78,39 +77,53 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see fr.n7.stl.block.ast.Type#compatibleWith(fr.n7.stl.block.ast.Type)
-	 */
 	@Override
 	public boolean compatibleWith(Type _other) {
-		boolean ok = true;
+
 		if(_other instanceof RecordType) {
-			for(FieldDeclaration f : ((RecordType)_other).fields) {
-				ok &= f.getType().compatibleWith(this);
-			}
-			return ok;
+			RecordType _local = (RecordType) _other;
+			if(this.fields.size() == _local.fields.size()) {
+				Iterator<FieldDeclaration> i1 = this.fields.iterator();
+				Iterator<FieldDeclaration> i2 = _local.fields.iterator();
+				boolean _result = true;
+				while (i1.hasNext() && i2.hasNext() && _result) {
+					_result = _result && (i1.next().getType().compatibleWith(i2.next().getType()));
+				}
+				return _result;
+			} else {
+				return false;
+			} 
 		} else {
 			return false;
 		}
+
 	}
 
+	
 	/* (non-Javadoc)
 	 * @see fr.n7.stl.block.ast.Type#merge(fr.n7.stl.block.ast.Type)
 	 */
 	@Override
 	public Type merge(Type _other) {
-		if(_other instanceof RecordType) {
-
-			if(_other.compatibleWith(this)) {
-				return _other;
+		/*if(_other instanceof RecordType) {
+			RecordType _local = (RecordType)_other;
+			
+			List<FieldDeclaration> _fields =  new LinkedList<FieldDeclaration>();
+			
+			if(this.fields.size() == _local.fields.size()) {
+				Iterator<FieldDeclaration> i1 = this.fields.iterator();
+				Iterator<FieldDeclaration> i2 = _local.fields.iterator();
+				while(i1.hasNext() && i2.hasNext()) {
+					_fields.add(i1.next().merge(i2.next()));
+				} 
 			} else {
-				return this;
+				return AtomicType.ErrorType;
 			}
-
 		} else {
-			Logger.error("RecordType merge : type mismatch");
 			return AtomicType.ErrorType;
-		}
+		} */
+		
+		return AtomicType.ErrorType;
 
 	}
 

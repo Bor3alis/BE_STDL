@@ -115,8 +115,7 @@ public class FunctionDeclaration implements Instruction, Declaration {
 		Iterator<ParameterDeclaration> it = this.parameters.iterator();
 		int dep = 0;
 		while(it.hasNext()) {
-			dep += 1;
-			
+			dep += 1;			
 			declaration_parametre = it.next();
 			declaration_parametre.setOffset(dep);
 			if (tableBody.accepts(declaration_parametre)) {
@@ -148,15 +147,20 @@ public class FunctionDeclaration implements Instruction, Declaration {
 	 */
 	@Override
 	public int allocateMemory(Register _register, int _offset) {
-		throw new SemanticsUndefinedException( "Semantics allocateMemory is undefined in FunctionDeclaration.");
-	}
+		this.body.allocateMemory(Register.LB, 0);
+		return 0;
+				}
 
 	/* (non-Javadoc)
 	 * @see fr.n7.stl.block.ast.instruction.Instruction#getCode(fr.n7.stl.tam.ast.TAMFactory)
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException( "Semantics getCode is undefined in FunctionDeclaration.");
+
+		Fragment code = _factory.createFragment();
+		code.append(this.body.getCode(_factory));
+		
+		return code;
 	}
 
 	@Override
