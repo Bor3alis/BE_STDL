@@ -13,7 +13,7 @@ fonctions {
 		return a + b;
 	}
 	
-	
+	// déclaration de fonction avec type de retour
 	int factorielle(int n) {
 		if (n <= 1) {
 			return 1;
@@ -21,4 +21,8 @@ fonctions {
 			return n * factorielle(n-1);
 		}
 	}
+	
+	int a = factorielle(3);
+	
+	int c = a + 1;
 }
