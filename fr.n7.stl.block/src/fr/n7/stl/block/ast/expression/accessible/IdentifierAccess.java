@@ -5,7 +5,9 @@ package fr.n7.stl.block.ast.expression.accessible;
 
 import fr.n7.stl.block.ast.expression.AbstractIdentifier;
 import fr.n7.stl.block.ast.expression.AbstractUse;
+import fr.n7.stl.block.ast.expression.FunctionCall;
 import fr.n7.stl.block.ast.instruction.declaration.ConstantDeclaration;
+import fr.n7.stl.block.ast.instruction.declaration.FunctionDeclaration;
 import fr.n7.stl.block.ast.instruction.declaration.ParameterDeclaration;
 import fr.n7.stl.block.ast.instruction.declaration.VariableDeclaration;
 import fr.n7.stl.block.ast.scope.Declaration;

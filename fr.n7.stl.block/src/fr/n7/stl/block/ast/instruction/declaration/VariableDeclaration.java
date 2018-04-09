@@ -4,13 +4,11 @@
 package fr.n7.stl.block.ast.instruction.declaration;
 
 import fr.n7.stl.block.ast.expression.Expression;
-import fr.n7.stl.block.ast.expression.Sequence;
 import fr.n7.stl.block.ast.instruction.Instruction;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.type.AtomicType;
-import fr.n7.stl.block.ast.type.RecordType;
-import fr.n7.stl.block.ast.type.SequenceType;
+import fr.n7.stl.block.ast.type.FunctionType;
 import fr.n7.stl.block.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
@@ -129,13 +127,13 @@ public class VariableDeclaration implements Declaration, Instruction {
 	public boolean checkType() {
 		
 		Type treel = this.value.getType();
-		
+	
 		if(!treel.compatibleWith(this.type)) {
 			System.out.println(treel);
 			System.out.println(type);
 			Logger.error("the variable " + this.name + " has the type " + type + " but should be type of " + treel);
 			return false;
-		} else {
+		} else{
 			return true;
 		}
 
