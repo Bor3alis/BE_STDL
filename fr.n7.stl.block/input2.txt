@@ -49,17 +49,21 @@ int t[] = new int[5];
 	 g = point.o; */
 
 
-/*int l = 3;
-	void somme(int a, int b) {
-		int x = a + l;
-	}
-=======
+//int l = 3;
+//	void somme(int a, int b) {
+//		int x = a + l;
+//	}
+
 	/*void somme(int a, int b) {
 		int x = a + b;
 	}*/
 
 	
+<<<<<<< HEAD
 	void x = somme(3,4); 
+=======
+	//void x = somme(3,4);
+>>>>>>> b4f22832dae0a61a27a368b9cc0470da748caa21
 	
 	// TEST PRINT 
 
@@ -69,12 +73,12 @@ int t[] = new int[5];
 
 
 	// TEST POINTEURS
-	//int *p = new int();
-	//*p = 4;
+	int *p = new int();
+	*p = 4;
 
-	/*int k = 6;
+	int k = 6;
 	int *ptr = new int();
-	*ptr = &k;*/
+	*ptr = &k;
 
     // TEST TYPECAST
 
@@ -82,10 +86,10 @@ int t[] = new int[5];
     Entier x = (Entier) 3; */
     //(int) x = 3;
 
-    typedef int Entier;
+    /*typedef int Entier;
     Entier x = 3;
     int y = 4;
-    y = (Entier) 3;
+    y = (Entier) 3;*/
 
 
 
