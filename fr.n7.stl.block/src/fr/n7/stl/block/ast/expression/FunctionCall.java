@@ -55,7 +55,7 @@ public class FunctionCall implements Expression {
 	 */
 	@Override
 	public String toString() {
-		String _result = ((this.function == null)?this.name:this.function) + "( ";
+		String _result = ((this.function == null)?this.name:this.function.getName()) + "( ";
 		Iterator<Expression> _iter = this.arguments.iterator();
 		if (_iter.hasNext()) {
 			_result += _iter.next();
@@ -84,9 +84,8 @@ public class FunctionCall implements Expression {
 	 */
 	@Override
 	public Type getType() {
-		return this.function.getType();
 
-	}
+		return this.function.getType();
 
 	/* (non-Javadoc)
 	 * @see fr.n7.stl.block.ast.Expression#getCode(fr.n7.stl.tam.ast.TAMFactory)

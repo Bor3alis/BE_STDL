@@ -49,6 +49,7 @@ int t[] = new int[5];
 	 g = point.o; */
 
 
+
 //int l = 3;
 //	void somme(int a, int b) {
 //		int x = a + l;
@@ -57,9 +58,8 @@ int t[] = new int[5];
 	int somme(int a, int b) {
 		return (a + b);
 
-	}
+}
 
-	
 	int y = somme(3,4);
 	
 	// TEST PRINT 

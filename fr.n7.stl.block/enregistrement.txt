@@ -1,0 +1,22 @@
+enregistrement {
+	
+	// TEST ENREGISTREMENT
+struct Pointi {int x; int y; int z; int o;} point  = {3,4,5,6};
+	 
+	point.y = 2;
+	point.o = 1;
+	  
+	 const int az = 3;
+	 
+	 int d = 42;
+	 int e = 43;
+	 int f = 44;
+	 int g = 45;
+	 
+	 d = point.x;
+	 e = point.y;
+	 f = point.z;
+
+	 g = point.o;
+	 
+} 

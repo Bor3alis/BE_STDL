@@ -107,7 +107,7 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 	 */
 	@Override
 	public Type merge(Type _other) {
-		/*if(_other instanceof RecordType) {
+		if(_other instanceof RecordType) {
 			RecordType _local = (RecordType)_other;
 			
 			List<FieldDeclaration> _fields =  new LinkedList<FieldDeclaration>();
@@ -123,7 +123,7 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 			}
 		} else {
 			return AtomicType.ErrorType;
-		} */
+		} 
 		
 		return AtomicType.ErrorType;
 
