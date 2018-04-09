@@ -1,0 +1,10 @@
+pointeurs {
+
+	int *p = new int();
+	*p = 4;
+
+	int k = 6;
+	int *ptr = new int();
+	*ptr = &k;
+
+}

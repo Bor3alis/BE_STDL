@@ -59,7 +59,7 @@ int t[] = new int[5];
 	}*/
 
 	
-	void x = somme(3,4); */
+	void x = somme(3,4); 
 	
 	// TEST PRINT 
 
