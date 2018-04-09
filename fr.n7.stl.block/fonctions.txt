@@ -1,0 +1,24 @@
+fonctions {
+	// TEST FONCTIONS
+	
+	// déclaration de fonction sans type de retour
+	void somme(int a, int b) {
+		int res = a + b;
+	}
+	
+	// appel de fonction
+	void x = somme(3,4);
+	
+	int somme2(int a, int b) {
+		return a + b;
+	}
+	
+	
+	int factorielle(int n) {
+		if (n <= 1) {
+			return 1;
+		} else {
+			return n * factorielle(n-1);
+		}
+	}
+}
