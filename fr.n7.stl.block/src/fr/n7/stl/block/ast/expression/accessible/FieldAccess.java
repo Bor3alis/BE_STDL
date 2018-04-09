@@ -42,12 +42,10 @@ public class FieldAccess extends AbstractField implements Expression {
 
 
 		while (! (next_field == null)) {
-			System.out.println("BBBBBB");
 			code.add(_factory.createPop(0,next_field.getType().length()));
 			next_field = ((RecordType)this.record.getType()).get_nextField(next_field);
 		}
 		while (! (previous_field == null)) {
-			System.out.println("AAAAAA");
 			code.add(_factory.createPop(this.field.getType().length(), previous_field.getType().length()));
 			previous_field = ((RecordType)this.record.getType()).get_previousField(previous_field);
 		}
