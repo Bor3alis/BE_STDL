@@ -84,9 +84,7 @@ public class FunctionCall implements Expression {
 	 */
 	@Override
 	public Type getType() {
-		// A VERIFIER
-		
-		return this.function.getReturnType();
+		return this.function.getType();
 
 	}
 
@@ -103,7 +101,8 @@ public class FunctionCall implements Expression {
 		
 		// on fait le call
 		code.add(_factory.createCall(this.function.getName(), Register.LB));
-		
+
+
 		return code;
 	}
 

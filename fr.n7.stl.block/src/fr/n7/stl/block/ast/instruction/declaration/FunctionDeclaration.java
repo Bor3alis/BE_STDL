@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.sun.org.apache.bcel.internal.classfile.Code;
 import fr.n7.stl.block.ast.Block;
 import fr.n7.stl.block.ast.SemanticsUndefinedException;
 import fr.n7.stl.block.ast.instruction.Conditional;
@@ -158,8 +159,17 @@ public class FunctionDeclaration implements Instruction, Declaration {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
+		String labelFct = this.name;
+		String labelFinFct = this.name.concat("_");
+		Fragment codeBody = this.body.getCode(_factory);
 		Fragment code = _factory.createFragment();
-		code.append(this.body.getCode(_factory));	
+
+		codeBody.addPrefix(labelFct.concat(":"));
+		code.add(_factory.createJump(labelFinFct));
+		code.append(codeBody);
+		code.addSuffix(labelFinFct.concat(":"));
+
+
 		return code;
 	}
 
