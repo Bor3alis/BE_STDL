@@ -85,7 +85,7 @@ public class TypeCast implements Expression {
 	public Fragment getCode(TAMFactory _factory) {
 		// On récupère la valeur de ce qu'on est en train de caster
 
-		throw new SemanticsUndefinedException("Semantics getCode undefined in Type Cast.");
+		return (this.target.getCode(_factory));
 	}
 
 }

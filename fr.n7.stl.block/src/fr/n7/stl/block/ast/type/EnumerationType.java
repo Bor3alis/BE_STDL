@@ -70,6 +70,8 @@ public class EnumerationType implements Type, Declaration {
 				ok &= l.getType().compatibleWith(_other);
 			}
 			return ok;
+		}else if ( _other instanceof NamedType ){
+			return _other.compatibleWith(this);
 		} else {
 			return false;
 		}
