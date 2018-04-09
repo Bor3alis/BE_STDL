@@ -6,6 +6,7 @@ package fr.n7.stl.block.ast.instruction;
 import fr.n7.stl.block.ast.SemanticsUndefinedException;
 import fr.n7.stl.block.ast.expression.Expression;
 import fr.n7.stl.block.ast.expression.accessible.AccessibleExpression;
+import fr.n7.stl.block.ast.expression.accessible.AddressAccess;
 import fr.n7.stl.block.ast.expression.assignable.AssignableExpression;
 import fr.n7.stl.block.ast.instruction.declaration.ConstantDeclaration;
 import fr.n7.stl.block.ast.scope.Declaration;
@@ -89,7 +90,8 @@ public class Assignment implements Instruction, Expression {
 	 */
 	@Override
 	public int allocateMemory(Register _register, int _offset) {
-		return value.getType().length();
+		//return value.getType().length();
+		return 0;
 	}
 
 	/* (non-Javadoc)
@@ -104,14 +106,14 @@ public class Assignment implements Instruction, Expression {
 		frag.append(value.getCode(_factory));
 		
 		// on récupère la valeur de v à partir de son adresse
-		if (this.value instanceof AccessibleExpression)
+		if (this.value instanceof AccessibleExpression && ! (this.value instanceof AddressAccess))
 			frag.add(_factory.createLoadI(this.value.getType().length()));
 		
 		
 		TAMInstruction instr = _factory.createStoreI(this.value.getType().length());
 		frag.append(code_suite);
 		
-	//	frag.add(_factory.createLoadI(this.value.getType().length()));
+
 		
 		frag.add(instr);
 		

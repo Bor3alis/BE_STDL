@@ -115,7 +115,7 @@ public class ConstantDeclaration implements Instruction, Declaration {
 	 */
 	@Override
 	public int allocateMemory(Register _register, int _offset) {
-		return this.value.getType().length();
+		return 0;
 	}
 
 	/* (non-Javadoc)

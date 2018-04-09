@@ -12,6 +12,7 @@ import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
+import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
 
 /**
@@ -90,7 +91,17 @@ public class FunctionCall implements Expression {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException( "Semantics getCode is undefined in FunctionCall.");
+		Fragment code = _factory.createFragment();
+		
+		// on ajoute le code des paramètres
+		for(Expression a : arguments) {
+			code.append(a.getCode(_factory));
+		}
+		
+		// on fait le call
+		code.add(_factory.createCall(this.function.getName(), Register.LB));
+		
+		return code;
 	}
 
 

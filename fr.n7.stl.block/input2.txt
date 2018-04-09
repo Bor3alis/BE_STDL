@@ -1,10 +1,95 @@
-test2 {
-int i = 4;
-int y = 1;
-int c = 3;
-while (c <= 10) {
-y = y + 1;
-c = c + 1;
-}
-}
+test {
 
+	// TEST COUPLE
+	/*<int,int> c = <47,53>;
+	int a = fst c;
+	int b = snd c; */
+	
+	/*TEST ARRAY
+int t[] = new int[5];
+
+	int i = 4;
+	t[3] = 2;
+	i = t[3];*/
+	
+
+	// TEST ENREGISTREMENT
+
+	//struct Pointi {int x; int y; int z; int o;} point  = {3,4,6,7};
+	// point.y = 2;
+
+	 
+	//int d = 42;
+//	d = point.y;
+	/*int a = 1000;
+	int b = 10993;
+	int c = 477;
+	
+
+	
+	a = c;
+	b = c; 
+
+	print a;
+	print c; */
+	
+/* struct Pointi {int x; int y; int z; int o;} point  = {3,4,5,6};
+	 //point.y = 2;
+	  
+	// const int az = 3;
+	 int d = 42;
+	 int e = 43;
+	 int f = 44;
+	 int g = 45;
+	//int c =  (int) d;
+	 d = point.x;
+	 e = point.y;
+	 f = point.z;
+
+	 g = point.o;*/
+
+
+	void somme(int a, int b) {
+		int x = a + b;
+	}
+	
+	
+	// TEST PRINT 
+	 int z = 4;
+
+	// TEST POINTEURS
+	//int *p = new int();
+	//*p = 4;
+
+	/*int k = 6;
+	int *ptr = new int();
+	*ptr = &k;*/
+
+    // TEST TYPECAST
+    typedef int Entier;
+    Entier x = (Entier) 3;
+    //(int) x = 3;
+
+
+	//int *ptr2 = new int();
+
+	/*//TEST CONDITIONAL
+	int a = 3;
+	if (a < 3 ) {
+	    a = a + 1;
+	} else {
+	    a = a - 1;
+	}*/
+
+    /*// TEST ITERATION
+    int a = 3;
+    while (a <= 7) {
+        a = a + 1;
+    }*/
+
+
+
+
+
+	
+}

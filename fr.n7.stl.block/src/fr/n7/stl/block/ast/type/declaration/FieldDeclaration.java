@@ -20,7 +20,7 @@ public class FieldDeclaration implements Declaration {
 	public FieldDeclaration(String _name, Type _type) {
 		this.name = _name;
 		this.type = _type;
-		this.offset = -1;
+	//	this.offset = -1;
 	}
 
 	/* (non-Javadoc)
@@ -53,6 +53,10 @@ public class FieldDeclaration implements Declaration {
 	 */
 	public int getOffset() {
 		return this.offset;
+	}
+	
+	public void setOffset(int _offset) {
+		this.offset = _offset;
 	}
 
 }

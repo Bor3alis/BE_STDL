@@ -113,8 +113,13 @@ public class FunctionDeclaration implements Instruction, Declaration {
 		// creer une nouvelle table des symboles pour le body 
 		HierarchicalScope<Declaration> tableBody= new SymbolTable(_scope);
 		Iterator<ParameterDeclaration> it = this.parameters.iterator();
+		int dep = 0;
 		while(it.hasNext()) {
+				
 			declaration_parametre = it.next();
+			declaration_parametre.setOffset(dep);
+			dep += 1;
+			
 			if (tableBody.accepts(declaration_parametre)) {
 				tableBody.register(declaration_parametre);
 				args_resolve = true;
@@ -144,15 +149,18 @@ public class FunctionDeclaration implements Instruction, Declaration {
 	 */
 	@Override
 	public int allocateMemory(Register _register, int _offset) {
-		throw new SemanticsUndefinedException( "Semantics allocateMemory is undefined in FunctionDeclaration.");
-	}
+		this.body.allocateMemory(Register.LB, 0);
+		return 0; // déclaration de fonction => ne prend pas de place en mémoire
+				}
 
 	/* (non-Javadoc)
 	 * @see fr.n7.stl.block.ast.instruction.Instruction#getCode(fr.n7.stl.tam.ast.TAMFactory)
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException( "Semantics getCode is undefined in FunctionDeclaration.");
+		Fragment code = _factory.createFragment();
+		code.append(this.body.getCode(_factory));	
+		return code;
 	}
 
 	@Override

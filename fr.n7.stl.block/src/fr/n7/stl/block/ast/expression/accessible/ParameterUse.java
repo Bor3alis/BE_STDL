@@ -37,7 +37,11 @@ public class ParameterUse extends AbstractUse {
 	 * @see fr.n7.stl.block.ast.expression.AbstractUse#getCode(fr.n7.stl.tam.ast.TAMFactory)
 	 */
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException( "Semantics getCode is undefined in ParameterUse.");
+		//throw new SemanticsUndefinedException( "Semantics getCode is undefined in ParameterUse.");
+		Fragment _result = _factory.createFragment();
+		_result.add(_factory.createLoadL(this.declaration.getOffset()));
+		return _result;
+		
 	}
 
 }

@@ -33,9 +33,6 @@ public class TypeDeclaration implements Declaration, Instruction {
 	 * @param _type : AST node for the type associated to the name
 	 */
 	public TypeDeclaration(String _name, Type _type) {
-		System.out.println("aaaaaaaaa");
-		System.out.println(_name);
-		System.out.println(_type);
 		this.name = _name;
 		this.type = _type;
 	}

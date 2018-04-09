@@ -4,6 +4,7 @@
 package fr.n7.stl.block.ast.instruction;
 
 import fr.n7.stl.block.ast.expression.Expression;
+import fr.n7.stl.block.ast.expression.accessible.AccessibleExpression;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.type.AtomicType;
@@ -71,6 +72,9 @@ public class Printer implements Instruction {
 		
 		Fragment code = _factory.createFragment();
 		code.append(this.parameter.getCode(_factory));
+		
+		if (this.parameter instanceof AccessibleExpression)
+			code.add(_factory.createLoadI(this.parameter.getType().length()));
 		
 		Type type = this.parameter.getType();
 		

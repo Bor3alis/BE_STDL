@@ -3,18 +3,18 @@
  */
 package fr.n7.stl.block.ast.instruction.declaration;
 
-import fr.n7.stl.block.ast.SemanticsUndefinedException;
 import fr.n7.stl.block.ast.expression.Expression;
+import fr.n7.stl.block.ast.expression.Sequence;
 import fr.n7.stl.block.ast.instruction.Instruction;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.type.AtomicType;
+import fr.n7.stl.block.ast.type.RecordType;
+import fr.n7.stl.block.ast.type.SequenceType;
 import fr.n7.stl.block.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
-import fr.n7.stl.tam.ast.TAMInstruction; 
-import fr.n7.stl.tam.ast.impl.FragmentImpl;
 import fr.n7.stl.util.Logger;
 
 /**
@@ -138,6 +138,8 @@ public class VariableDeclaration implements Declaration, Instruction {
 		} else {
 			return true;
 		}
+
+
 	}
 
 	/* (non-Javadoc)
@@ -147,6 +149,7 @@ public class VariableDeclaration implements Declaration, Instruction {
 	public int allocateMemory(Register _register, int _offset) {
 		this.register = _register;
 		this.offset = _offset;
+	
 		return this.getType().length();
 	}
 
@@ -159,13 +162,9 @@ public class VariableDeclaration implements Declaration, Instruction {
 		Fragment code = _factory.createFragment();
 		code.add(_factory.createPush(this.getType().length()));	
 		code.append(this.value.getCode(_factory));
-<<<<<<< HEAD
-		code.add(_factory.createStore(Register.LB, this.offset, this.getType().length()));
-		code.addComment("VariableDeclaration");
-=======
+		
 		code.add(_factory.createStore(this.register, this.offset, this.getType().length()));
 		code.addComment("VariableDeclaration Fin");
->>>>>>> 341531685ac7d817fa4bd47c38acc6be5a99c4c2
 		return code;
 	}
 

@@ -77,39 +77,53 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see fr.n7.stl.block.ast.Type#compatibleWith(fr.n7.stl.block.ast.Type)
-	 */
 	@Override
 	public boolean compatibleWith(Type _other) {
-		boolean ok = true;
+
 		if(_other instanceof RecordType) {
-			for(FieldDeclaration f : ((RecordType)_other).fields) {
-				ok &= f.getType().compatibleWith(this);
-			}
-			return ok;
+			RecordType _local = (RecordType) _other;
+			if(this.fields.size() == _local.fields.size()) {
+				Iterator<FieldDeclaration> i1 = this.fields.iterator();
+				Iterator<FieldDeclaration> i2 = _local.fields.iterator();
+				boolean _result = true;
+				while (i1.hasNext() && i2.hasNext() && _result) {
+					_result = _result && (i1.next().getType().compatibleWith(i2.next().getType()));
+				}
+				return _result;
+			} else {
+				return false;
+			} 
 		} else {
 			return false;
 		}
+
 	}
 
+	
 	/* (non-Javadoc)
 	 * @see fr.n7.stl.block.ast.Type#merge(fr.n7.stl.block.ast.Type)
 	 */
 	@Override
 	public Type merge(Type _other) {
-		if(_other instanceof RecordType) {
-
-			if(_other.compatibleWith(this)) {
-				return _other;
+		/*if(_other instanceof RecordType) {
+			RecordType _local = (RecordType)_other;
+			
+			List<FieldDeclaration> _fields =  new LinkedList<FieldDeclaration>();
+			
+			if(this.fields.size() == _local.fields.size()) {
+				Iterator<FieldDeclaration> i1 = this.fields.iterator();
+				Iterator<FieldDeclaration> i2 = _local.fields.iterator();
+				while(i1.hasNext() && i2.hasNext()) {
+					_fields.add(i1.next().merge(i2.next()));
+				} 
 			} else {
-				return this;
+				return AtomicType.ErrorType;
 			}
-
 		} else {
-			Logger.error("RecordType merge : type mismatch");
 			return AtomicType.ErrorType;
-		}
+		} */
+		
+		return AtomicType.ErrorType;
 
 	}
 
@@ -131,6 +145,26 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 			return null;
 		}
 	}
+	
+	public FieldDeclaration get_previousField(FieldDeclaration _field){
+		int idx = this.fields.indexOf(_field);
+		if(idx <= 0) {
+			return null;
+		} else {
+			return this.fields.get(idx -1);
+		}
+	}
+	
+	public FieldDeclaration get_nextField(FieldDeclaration _field) {
+		int idx = this.fields.indexOf(_field);
+		if(idx < 0 || idx+1 == this.fields.size()){
+			return null;
+		} else {
+			return this.fields.get(idx + 1);
+		}
+	}
+	
+	
 
 	/* (non-Javadoc)
 	 * @see fr.n7.stl.block.ast.Scope#contains(java.lang.String)
@@ -139,7 +173,11 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 	public boolean contains(String _name) {
 		boolean _result = false;
 		Iterator<FieldDeclaration> _iter = this.fields.iterator();
+		
 		while (_iter.hasNext() && (! _result)) {
+			if(_iter.hasNext()) 
+			
+			
 			_result = _result || _iter.next().getName().contentEquals(_name);
 		}
 		return _result;
@@ -211,8 +249,11 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 	@Override
 	public boolean resolve(HierarchicalScope<Declaration> _scope) {
 		boolean _result = true;
+		int dep = 0;
 		for (FieldDeclaration f : this.fields) {
+			f.setOffset(dep);
 			_result = _result && f.getType().resolve(_scope);
+			dep += 1;
 		}
 		return _result;
 	}

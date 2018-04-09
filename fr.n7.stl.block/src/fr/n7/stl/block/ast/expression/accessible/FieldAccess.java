@@ -3,9 +3,10 @@
  */
 package fr.n7.stl.block.ast.expression.accessible;
 
-import fr.n7.stl.block.ast.SemanticsUndefinedException;
 import fr.n7.stl.block.ast.expression.AbstractField;
 import fr.n7.stl.block.ast.expression.Expression;
+import fr.n7.stl.block.ast.type.RecordType;
+import fr.n7.stl.block.ast.type.declaration.FieldDeclaration;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.TAMFactory;
 
@@ -28,9 +29,30 @@ public class FieldAccess extends AbstractField implements Expression {
 	/* (non-Javadoc)
 	 * @see fr.n7.stl.block.ast.Expression#getCode(fr.n7.stl.tam.ast.TAMFactory)
 	 */
+	
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException( "getCode is undefined in FieldAccess.");
-	}
+		
+		FieldDeclaration previous_field = ((RecordType)this.record.getType()).get_previousField(this.field);
+		FieldDeclaration next_field = ((RecordType)this.record.getType()).get_nextField(this.field);
+		
+		Fragment code = _factory.createFragment();
+		code.append(this.record.getCode(_factory));
+		code.add(_factory.createLoadI(this.record.getType().length()));
 
+
+		while (! (next_field == null)) {
+			System.out.println("BBBBBB");
+			code.add(_factory.createPop(0,next_field.getType().length()));
+			next_field = ((RecordType)this.record.getType()).get_nextField(next_field);
+		}
+		while (! (previous_field == null)) {
+			System.out.println("AAAAAA");
+			code.add(_factory.createPop(this.field.getType().length(), previous_field.getType().length()));
+			previous_field = ((RecordType)this.record.getType()).get_previousField(previous_field);
+		}
+
+		return code;
+
+}
 }

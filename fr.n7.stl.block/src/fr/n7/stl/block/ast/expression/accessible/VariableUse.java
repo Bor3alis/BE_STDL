@@ -52,11 +52,5 @@ public class VariableUse extends AbstractUse {
 		_result.add(_factory.createLoadL(this.declaration.getOffset()));
 		return _result;
 	}
-	
-	/* 		Fragment code = new FragmentImpl();
-		code.add(_factory.createPush(this.getType().length()));	
-		code.append(this.value.getCode(_factory));
-		code.addComment("VariableDeclaration Fin");
-		return code; */
 
 }
