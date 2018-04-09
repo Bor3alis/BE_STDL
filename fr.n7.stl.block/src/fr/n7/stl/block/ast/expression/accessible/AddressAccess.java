@@ -40,8 +40,9 @@ public class AddressAccess implements AccessibleExpression {
 	 */
 	@Override
 	public Type getType() {
-		if(this.assignable.getType().equals(AtomicType.IntegerType)) {
-			return new PointerType(this.assignable.getType());
+		if(this.assignable.getType().compatibleWith(AtomicType.IntegerType)) {
+			return AtomicType.IntegerType;
+
 		} else {
 			Logger.error("Error AddressAccess : getType()");
 			return AtomicType.ErrorType;
