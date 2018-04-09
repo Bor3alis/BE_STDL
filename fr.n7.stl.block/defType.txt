@@ -1,0 +1,14 @@
+definitionType {
+
+typedef int Entier;
+
+    Entier x = 3;
+    int y = 4;
+    
+    const int k = 3;
+    y = (Entier) x;
+    
+    
+   boolean b = (y == 3);
+   boolean b2 = (x == 3);
+}

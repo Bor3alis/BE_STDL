@@ -43,7 +43,9 @@ public class PointerType implements Type {
 	@Override
 	public boolean compatibleWith(Type _other) {
 		if(_other instanceof PointerType) {
-			return this.element.compatibleWith(((PointerType)_other).element);
+			return this.element.compatibleWith(((PointerType) _other).element);
+		}else if ( _other instanceof NamedType ){
+			return _other.compatibleWith(this);
 		} else {
 			return false;
 		}

@@ -37,7 +37,9 @@ public class ArrayType implements Type {
 	@Override
 	public boolean compatibleWith(Type _other) {
 		if (_other instanceof ArrayType) {
-			return this.element.compatibleWith(((ArrayType)_other).element);
+			return this.element.compatibleWith(((ArrayType) _other).element);
+		}else if ( _other instanceof NamedType ){
+			return _other.compatibleWith(this);
 		} else {
 			return false;
 		}

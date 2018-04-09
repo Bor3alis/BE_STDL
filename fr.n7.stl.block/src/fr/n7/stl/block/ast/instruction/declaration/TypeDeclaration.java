@@ -70,7 +70,6 @@ public class TypeDeclaration implements Declaration, Instruction {
 	 * @return Type from the declaration.
 	 */
 	public Type getType() {
-		System.out.println(this.type);
 		return this.type;
 	}
 

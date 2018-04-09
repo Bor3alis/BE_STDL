@@ -78,6 +78,7 @@ public class SequenceType implements Type {
 	 */
 	@Override
 	public boolean compatibleWith(Type _other) {
+
 		if (_other instanceof SequenceType) {
 			SequenceType _local = (SequenceType) _other;
 			if (this.types.size() == _local.types.size()) {
@@ -91,10 +92,14 @@ public class SequenceType implements Type {
 			} else {
 				return false;
 			}
+
+		}else if ( _other instanceof NamedType ){
+			return _other.compatibleWith(this);
 		} else {
+
 			if (_other instanceof ArrayType) {
 				boolean _result = true;
-				Type _element = ((ArrayType)_other).getType();
+				Type _element = ((ArrayType) _other).getType();
 				Iterator<Type> _iter = this.types.iterator();
 				while (_iter.hasNext() && _result) {
 					_result = _result && _iter.next().equalsTo(_element);
@@ -102,12 +107,12 @@ public class SequenceType implements Type {
 				return _result;
 			} else {
 				if (_other instanceof RecordType) {
-					return this.compatibleWith(((RecordType)_other).erase());
+					return this.compatibleWith(((RecordType) _other).erase());
 				} else {
 					if (_other instanceof CoupleType) {
 						if (this.types.size() == 2) {
-							return this.types.get(0).compatibleWith(((CoupleType)_other).getFirst()) &&
-									this.types.get(1).compatibleWith(((CoupleType)_other).getSecond());
+							return this.types.get(0).compatibleWith(((CoupleType) _other).getFirst()) &&
+									this.types.get(1).compatibleWith(((CoupleType) _other).getSecond());
 						} else {
 							return false;
 						}
@@ -117,6 +122,7 @@ public class SequenceType implements Type {
 				}
 			}
 		}
+
 	}
 
 	/* (non-Javadoc)

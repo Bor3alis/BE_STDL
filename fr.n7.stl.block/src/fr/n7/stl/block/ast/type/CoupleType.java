@@ -48,6 +48,8 @@ public class CoupleType implements Type {
 		if (_other instanceof CoupleType) {
 			return this.first.compatibleWith(((CoupleType) _other).first)
 					&& this.second.compatibleWith(((CoupleType) _other).second);
+		}else if ( _other instanceof NamedType ){
+			return _other.compatibleWith(this);
 		} else if(_other instanceof NamedType) {
 			TypeDeclaration td = (TypeDeclaration) ((NamedType)_other).getType();
 			

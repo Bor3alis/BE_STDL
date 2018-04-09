@@ -10,6 +10,7 @@ import fr.n7.stl.block.ast.SemanticsUndefinedException;
 import fr.n7.stl.block.ast.instruction.declaration.FunctionDeclaration;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
+import fr.n7.stl.block.ast.type.AtomicType;
 import fr.n7.stl.block.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
@@ -74,6 +75,7 @@ public class FunctionCall implements Expression {
 		for(Expression e : this.arguments) {
 			_result = _result && e.resolve(_scope);
 		};
+		this.function = (FunctionDeclaration) _scope.get(this.name); // Récupérer la fonction
 		return _result;
 	}
 	
@@ -83,7 +85,9 @@ public class FunctionCall implements Expression {
 	@Override
 	public Type getType() {
 		// A VERIFIER
-		return this.function.getType();
+		
+		return this.function.getReturnType();
+
 	}
 
 	/* (non-Javadoc)
@@ -92,7 +96,6 @@ public class FunctionCall implements Expression {
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
 		Fragment code = _factory.createFragment();
-		
 		// on ajoute le code des paramètres
 		for(Expression a : arguments) {
 			code.append(a.getCode(_factory));

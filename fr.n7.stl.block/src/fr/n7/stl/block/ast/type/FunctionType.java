@@ -69,10 +69,13 @@ public class FunctionType implements Type {
 					_result = _result && (i1.next().compatibleWith(i2.next()));
 				}
 				return _result &&  this.result.compatibleWith(_local.result);
+
 			} else {
 				return false;
-			} 
-		} else {
+			}
+		}else if ( _other instanceof NamedType ){
+			return _other.compatibleWith(this);
+		}else {
 			return false;
 		}
 
