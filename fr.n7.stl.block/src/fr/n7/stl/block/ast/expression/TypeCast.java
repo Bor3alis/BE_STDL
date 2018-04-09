@@ -53,10 +53,12 @@ public class TypeCast implements Expression {
 	public boolean resolve(HierarchicalScope<Declaration> _scope) {
 		if(_scope.knows(type)) {
 			Declaration info = _scope.get(type);
+			
 			if(info instanceof TypeDeclaration) {
 				this.namedType = new NamedType((TypeDeclaration) info);
-				return true;
-			} else {
+				return this.target.resolve(_scope);
+			} else
+			{
 				Logger.error("TypeCast is not a TypeDeclaration");
 				return false;
 			}

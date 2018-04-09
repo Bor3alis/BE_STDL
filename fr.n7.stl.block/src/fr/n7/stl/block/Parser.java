@@ -729,9 +729,9 @@ class CUP$Parser$actions {
 				System.out.println( bloc ); 
 				SymbolTable tds = new SymbolTable();
 				if (bloc.resolve(tds)) {
-					System.out.println("OK");
+					System.out.println("Resolve OK");
 				} else {
-					System.out.println("KO");
+					System.out.println("Resolve KO");
 				}
 				if(bloc.checkType() ){
 					System.out.println("Type OK");
