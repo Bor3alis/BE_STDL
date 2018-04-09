@@ -84,8 +84,7 @@ public class FunctionCall implements Expression {
 	 */
 	@Override
 	public Type getType() {
-		// A VERIFIER
-		
+		// A VERIFIER	
 		return this.function.getReturnType();
 
 	}

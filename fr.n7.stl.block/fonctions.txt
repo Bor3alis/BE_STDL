@@ -22,6 +22,7 @@ fonctions {
 		}
 	}
 	
+	// appel de fonction
 	int a = factorielle(3);
 	
 	int c = a + 1;

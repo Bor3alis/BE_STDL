@@ -1,0 +1,9 @@
+array {
+	
+	int t[] = new int[5];
+	
+	const j = 5;
+	int i = 4;
+	t[3] = 2;
+	i = t[3];
+}

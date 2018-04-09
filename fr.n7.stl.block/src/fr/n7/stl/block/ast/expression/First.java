@@ -4,6 +4,7 @@
 package fr.n7.stl.block.ast.expression;
 
 import fr.n7.stl.block.ast.SemanticsUndefinedException;
+import fr.n7.stl.block.ast.expression.accessible.AccessibleExpression;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.type.AtomicType;
@@ -71,7 +72,10 @@ public class First implements Expression {
 		Fragment _result = _factory.createFragment();
 		
 		_result.append(this.target.getCode(_factory));
-		_result.add(_factory.createPop(0,(((CoupleType) this.target.getType()).getFirst()).length())); 
+		if (this.target instanceof AccessibleExpression)
+			_result.add(_factory.createLoadI(this.target.getType().length()));
+		
+		_result.add(_factory.createPop(0,(((CoupleType) this.target.getType()).getSecond()).length())); 
 		return _result;
 	}
 

@@ -165,7 +165,6 @@ public class FunctionDeclaration implements Instruction, Declaration {
 
 	@Override
 	public Type getReturnType() {
-		//return AtomicType.VoidType;
 		return this.type;
 	}
 
