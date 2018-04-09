@@ -49,13 +49,13 @@ int t[] = new int[5];
 	 g = point.o;*/
 
 
-	void somme(int a, int b) {
+	/*void somme(int a, int b) {
 		int x = a + b;
-	}
+	}*/
 	
 	
 	// TEST PRINT 
-	 int z = 4;
+	 //int z = 4;
 
 	// TEST POINTEURS
 	//int *p = new int();
@@ -67,8 +67,9 @@ int t[] = new int[5];
 
     // TEST TYPECAST
     typedef int Entier;
-    Entier x = (Entier) 3;
-    //(int) x = 3;
+    Entier x = 3;
+    int y = 4;
+    y = (Entier) 3;
 
 
 	//int *ptr2 = new int();

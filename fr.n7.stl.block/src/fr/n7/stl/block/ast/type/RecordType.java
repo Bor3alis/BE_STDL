@@ -92,7 +92,9 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 				return _result;
 			} else {
 				return false;
-			} 
+			}
+		}else if ( _other instanceof NamedType ){
+			return _other.compatibleWith(this);
 		} else {
 			return false;
 		}
