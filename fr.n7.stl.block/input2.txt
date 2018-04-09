@@ -1,0 +1,10 @@
+test2 {
+int i = 4;
+int y = 1;
+int c = 3;
+while (c <= 10) {
+y = y + 1;
+c = c + 1;
+}
+}
+
