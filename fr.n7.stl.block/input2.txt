@@ -54,12 +54,13 @@ int t[] = new int[5];
 //		int x = a + l;
 //	}
 
-	/*void somme(int a, int b) {
-		int x = a + b;
-	}*/
+	int somme(int a, int b) {
+		return (a + b);
+
+	}
 
 	
-	//void x = somme(3,4);
+	int y = somme(3,4);
 	
 	// TEST PRINT 
 
@@ -69,12 +70,12 @@ int t[] = new int[5];
 
 
 	// TEST POINTEURS
-	int *p = new int();
+	/*int *p = new int();
 	*p = 4;
 
 	int k = 6;
 	int *ptr = new int();
-	*ptr = &k;
+	*ptr = &k;*/
 
     // TEST TYPECAST
 
@@ -99,8 +100,8 @@ int t[] = new int[5];
 	    a = a - 1;
 	}*/
 
-    /*// TEST ITERATION
-    int a = 3;
+    // TEST ITERATION
+    /*int a = 3;
     while (a <= 7) {
         a = a + 1;
     }*/
