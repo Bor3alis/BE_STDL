@@ -34,6 +34,7 @@ public class Block {
 	 * Sequence of instructions contained in a block.
 	 */
 	protected List<Instruction> instructions;
+	protected int offSet;
 
 	
 	public List<Instruction> getInstructions() {
@@ -106,10 +107,11 @@ public class Block {
 	 */	
 	public void allocateMemory(Register _register, int _offset) {
 		int d = _offset;
-		
+		this.offSet = d;
 		for(Instruction i : this.instructions) {
 			d += i.allocateMemory(_register, d);
 		}
+
 		
 	}
 
@@ -121,7 +123,7 @@ public class Block {
 	 */
 	public Fragment getCode(TAMFactory _factory) {
 		int taille_bloc = 0;
-		Fragment code = _factory.createFragment();;
+		Fragment code = _factory.createFragment();
 		
 		for(Instruction i : this.instructions) {
 
@@ -134,8 +136,9 @@ public class Block {
 		code.add(_factory.createPop(0, taille_bloc));
 		return code;
 	}
-	
-	
-	
 
+
+	public int getOffSet() {
+		return offSet;
+	}
 }

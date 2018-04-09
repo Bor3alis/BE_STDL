@@ -137,12 +137,17 @@ public class FunctionDeclaration implements Instruction, Declaration {
 		return retour;
 	}
 
+	public Block getBody() {
+		return body;
+	}
+
 	/* (non-Javadoc)
-	 * @see fr.n7.stl.block.ast.instruction.Instruction#checkType()
-	 */
+         * @see fr.n7.stl.block.ast.instruction.Instruction#checkType()
+         */
 	@Override
 	public boolean checkType() {
-		return this.type.compatibleWith(this.body.getReturnType());
+
+		return this.type.compatibleWith(this.body.getReturnType()) && this.body.checkType();
 	}
 
 	/* (non-Javadoc)
@@ -150,7 +155,7 @@ public class FunctionDeclaration implements Instruction, Declaration {
 	 */
 	@Override
 	public int allocateMemory(Register _register, int _offset) {
-		this.body.allocateMemory(Register.LB, 0);
+		this.body.allocateMemory(Register.LB, _offset);
 		return 0; // déclaration de fonction => ne prend pas de place en mémoire
 				}
 
@@ -166,8 +171,11 @@ public class FunctionDeclaration implements Instruction, Declaration {
 
 		codeBody.addPrefix(labelFct.concat(":"));
 		code.add(_factory.createJump(labelFinFct));
+
 		code.append(codeBody);
+
 		code.addSuffix(labelFinFct.concat(":"));
+
 
 
 		return code;
@@ -175,7 +183,15 @@ public class FunctionDeclaration implements Instruction, Declaration {
 
 	@Override
 	public Type getReturnType() {
-		return this.type;
+		return AtomicType.VoidType;
+	}
+
+	public  int taille_parametres(){
+		int res = 0;
+		for (ParameterDeclaration p : parameters) {
+			res += p.getType().length();
+		}
+		return res;
 	}
 
 	
