@@ -58,9 +58,7 @@ public class Block {
 		}
 		return "{\n" + _local + "}\n" ;
 	}
-	
-	
-	
+
 	/**
 	 * Inherited Semantics attribute to check that all identifiers have been defined and
 	 * associate all identifiers uses with their definitions.
@@ -131,9 +129,7 @@ public class Block {
 			
 			if(i instanceof VariableDeclaration) {
 				taille_bloc += ((VariableDeclaration)i).getType().length();
-				
-			}
-			
+			}		
 		}
 		code.add(_factory.createPop(0, taille_bloc));
 		return code;
