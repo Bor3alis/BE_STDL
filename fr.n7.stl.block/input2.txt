@@ -49,9 +49,9 @@ int t[] = new int[5];
 	 g = point.o;*/
 
 
-	void somme(int a, int b) {
+/*	void somme(int a, int b) {
 		int x = a + b;
-	}
+	} */
 	
 	
 	// TEST PRINT 
