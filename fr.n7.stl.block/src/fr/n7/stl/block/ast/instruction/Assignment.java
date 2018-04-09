@@ -6,6 +6,7 @@ package fr.n7.stl.block.ast.instruction;
 import fr.n7.stl.block.ast.SemanticsUndefinedException;
 import fr.n7.stl.block.ast.expression.Expression;
 import fr.n7.stl.block.ast.expression.accessible.AccessibleExpression;
+import fr.n7.stl.block.ast.expression.accessible.AddressAccess;
 import fr.n7.stl.block.ast.expression.assignable.AssignableExpression;
 import fr.n7.stl.block.ast.instruction.declaration.ConstantDeclaration;
 import fr.n7.stl.block.ast.scope.Declaration;
@@ -105,7 +106,7 @@ public class Assignment implements Instruction, Expression {
 		frag.append(value.getCode(_factory));
 		
 		// on récupère la valeur de v à partir de son adresse
-		if (this.value instanceof AccessibleExpression)
+		if (this.value instanceof AccessibleExpression && ! (this.value instanceof AddressAccess))
 			frag.add(_factory.createLoadI(this.value.getType().length()));
 		
 		

@@ -41,6 +41,8 @@ public class ArrayAssignment extends AbstractArray implements AssignableExpressi
 
 		code.add(Library.IMul);
 		code.add(Library.IAdd);
+
+
 		
 		//code.add(_factory.createLoadI(this.array.getType().length()));
 		

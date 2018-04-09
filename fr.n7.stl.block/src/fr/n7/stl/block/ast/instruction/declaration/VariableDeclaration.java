@@ -138,6 +138,8 @@ public class VariableDeclaration implements Declaration, Instruction {
 		} else {
 			return true;
 		}
+
+
 	}
 
 	/* (non-Javadoc)
