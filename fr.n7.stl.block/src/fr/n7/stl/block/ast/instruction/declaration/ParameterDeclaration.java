@@ -10,7 +10,7 @@ import fr.n7.stl.block.ast.type.Type;
  * Abstract Syntax Tree node for a formal parameter in a function declaration.
  * @author Marc Pantel
  */
-public class ParameterDeclaration implements Declaration {
+public class  ParameterDeclaration implements Declaration {
 	
 	/**
 	 * Name of the formal parameter
@@ -23,7 +23,7 @@ public class ParameterDeclaration implements Declaration {
 	protected Type type;
 	
 	/**
-	 * Offset of the formal parameter in the list of parameters for the function
+	 * Offse t of the formal parameter in the list of parameters for the function
 	 * i.e. the size of the memory allocated to the previous parameters
 	 */
 	protected int offset;
@@ -74,6 +74,7 @@ public class ParameterDeclaration implements Declaration {
 	public void setOffset(int offset) {
 		this.offset = offset;
 	}
+
 	
 	
 

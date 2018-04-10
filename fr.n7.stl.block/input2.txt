@@ -72,18 +72,18 @@ int t[] = new int[5];
     a = simple();*/
 
 
-    /*int b = 42;
+    int b = 42;
     int a = 5;
     int simple2 (int a, int b) {
 
 
         return a +b;
     }
-
-    b = simple2(2,9);*/
-
-    int a = 42;
-    int facto (int n) {
+        int c = 5;
+        int d = 6;
+         int e = 7;
+    b = simple2(2,9);
+    /*int facto (int n) {
         if (n <= 1) {
             return 1;
         } else {
@@ -91,7 +91,10 @@ int t[] = new int[5];
         }
     }
 
-    int b = facto(3);
+    int a = 42;
+
+
+    int b = facto(3);*/
 
 	// TEST PRINT 
 

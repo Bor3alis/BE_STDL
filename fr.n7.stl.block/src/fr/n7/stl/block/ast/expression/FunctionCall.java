@@ -76,12 +76,14 @@ public class FunctionCall implements Expression {
 		boolean _result = true;
 		for(Expression e : this.arguments) {
 			_result = _result && e.resolve(_scope);
-		};
+		}
+
 		this.function = (FunctionDeclaration) _scope.get(this.name); // Récupérer la fonction
 		//this.function.getBody().setOffSet(this.function.getParameters().get(arguments.size()- 1).getOffset() + 1);
 		for (ParameterDeclaration p : this.function.getParameters()) {
 			p.setOffset( p.getOffset() + this.function.getBody().getOffSet());
 		}
+
 		return _result;
 	}
 	

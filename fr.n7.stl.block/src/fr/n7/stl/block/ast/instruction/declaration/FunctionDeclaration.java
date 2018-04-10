@@ -156,7 +156,10 @@ public class FunctionDeclaration implements Instruction, Declaration {
 	@Override
 	public int allocateMemory(Register _register, int _offset) {
 		this.body.allocateMemory(Register.LB, _offset);
-		return 0; // déclaration de fonction => ne prend pas de place en mémoire
+		for (ParameterDeclaration p : parameters) {
+			p.setOffset(_offset+ p.getOffset());
+		}
+		return taille_parametres(); // déclaration de fonction => ne prend pas de place en mémoire
 				}
 
 	/* (non-Javadoc)
@@ -170,6 +173,7 @@ public class FunctionDeclaration implements Instruction, Declaration {
 		Fragment code = _factory.createFragment();
 
 		codeBody.addPrefix(labelFct.concat(":"));
+		code.add(_factory.createPush(taille_parametres()));
 		code.add(_factory.createJump(labelFinFct));
 
 		// On reserve l'espace pour le retour
