@@ -55,7 +55,7 @@ public class Return implements Instruction {
 	 */
 	@Override
 	public boolean checkType() {
-		throw new SemanticsUndefinedException("Semantics checkType undefined in Return.");
+		return true; // TODO : not really good
 	}
 
 	/* (non-Javadoc)
@@ -74,9 +74,8 @@ public class Return implements Instruction {
 	public Fragment getCode(TAMFactory _factory) {
 		Fragment code = _factory.createFragment();
 		
-		code.append(this.value.getCode(_factory)); // A VERIFIER
-		code.add(_factory.createReturn(this.value.getType().length(), 0)); // DEPLACEMENT ???
-		
+		code.append(this.value.getCode(_factory));
+		code.add(_factory.createReturn(this.value.getType().length(), 0));
 		return code;
 	}
 

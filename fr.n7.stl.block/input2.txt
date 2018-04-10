@@ -49,22 +49,34 @@ int t[] = new int[5];
 	 g = point.o; */
 
 
+
 //int l = 3;
 //	void somme(int a, int b) {
 //		int x = a + l;
 //	}
+/*
+	int somme(int a, int b) {
+		return (a + b);
 
-	/*void somme(int a, int b) {
-		int x = a + b;
-	}*/
+}
 
-	
-<<<<<<< HEAD
-	void x = somme(3,4); 
-=======
-	//void x = somme(3,4);
->>>>>>> b4f22832dae0a61a27a368b9cc0470da748caa21
-	
+	int y = somme(3,4);
+*/
+    // SIMPLE : OK
+    /*int simple() {
+        return 1;
+    }
+
+    int a = simple();
+    */
+
+    int b = 42;
+    int simple2 (int a) {
+        return a;
+    }
+
+    b = simple2(2);
+
 	// TEST PRINT 
 
 	// int z = 4;
@@ -73,12 +85,12 @@ int t[] = new int[5];
 
 
 	// TEST POINTEURS
-	int *p = new int();
+	/*int *p = new int();
 	*p = 4;
 
 	int k = 6;
 	int *ptr = new int();
-	*ptr = &k;
+	*ptr = &k;*/
 
     // TEST TYPECAST
 
@@ -103,8 +115,8 @@ int t[] = new int[5];
 	    a = a - 1;
 	}*/
 
-    /*// TEST ITERATION
-    int a = 3;
+    // TEST ITERATION
+    /*int a = 3;
     while (a <= 7) {
         a = a + 1;
     }*/

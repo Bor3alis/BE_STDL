@@ -55,7 +55,7 @@ public class FunctionCall implements Expression {
 	 */
 	@Override
 	public String toString() {
-		String _result = ((this.function == null)?this.name:this.function) + "( ";
+		String _result = ((this.function == null)?this.name:this.function.getName()) + "( ";
 		Iterator<Expression> _iter = this.arguments.iterator();
 		if (_iter.hasNext()) {
 			_result += _iter.next();
@@ -71,6 +71,7 @@ public class FunctionCall implements Expression {
 	 */
 	@Override
 	public boolean resolve(HierarchicalScope<Declaration> _scope) {
+
 		boolean _result = true;
 		for(Expression e : this.arguments) {
 			_result = _result && e.resolve(_scope);
@@ -84,26 +85,29 @@ public class FunctionCall implements Expression {
 	 */
 	@Override
 	public Type getType() {
-		// A VERIFIER
-		
-		return this.function.getReturnType();
+		return this.function.getType();
 
 	}
-
 	/* (non-Javadoc)
 	 * @see fr.n7.stl.block.ast.Expression#getCode(fr.n7.stl.tam.ast.TAMFactory)
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
 		Fragment code = _factory.createFragment();
-		// on ajoute le code des paramètres
+		// on ajoute le code des argument
 		for(Expression a : arguments) {
 			code.append(a.getCode(_factory));
 		}
+
+		// On associe arguments et paramtres
+		code.add(_factory.createStore(Register.LB,this.function.getBody().getOffSet(), arguments.size()));
 		
 		// on fait le call
+
+
 		code.add(_factory.createCall(this.function.getName(), Register.LB));
-		
+
+
 		return code;
 	}
 

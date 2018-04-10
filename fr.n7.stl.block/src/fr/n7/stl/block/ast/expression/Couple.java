@@ -3,6 +3,7 @@
  */
 package fr.n7.stl.block.ast.expression;
 
+import fr.n7.stl.block.ast.expression.accessible.AccessibleExpression;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.type.CoupleType;
@@ -75,9 +76,14 @@ public class Couple implements Expression {
 		// chargement du 1 element
 		_result.append(this.first.getCode(_factory));
 		
+		if (this.first instanceof AccessibleExpression)
+			_result.add(_factory.createLoadI(this.first.getType().length()));
+		
 		// chargement du 2 element
 		_result.append(this.second.getCode(_factory));
 		
+		if (this.second instanceof AccessibleExpression)
+			_result.add(_factory.createLoadI(this.second.getType().length()));
 		
 		return _result;
 	}

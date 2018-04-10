@@ -1,0 +1,10 @@
+couple {
+	// TEST COUPLE
+		int j = 42;
+		<int,int> c = <47,53>;
+		int a = 12;
+		a = fst c;
+		//int b = snd c;
+		
+		//c = <77,88>;
+		}

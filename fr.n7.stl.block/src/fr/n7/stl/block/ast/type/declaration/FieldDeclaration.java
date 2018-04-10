@@ -59,4 +59,14 @@ public class FieldDeclaration implements Declaration {
 		this.offset = _offset;
 	}
 
+	public FieldDeclaration merge(FieldDeclaration _other) {
+		if(_other instanceof FieldDeclaration) {
+			FieldDeclaration _local = (FieldDeclaration) _other;
+			if(this.name.equals(_local.name)) {
+				return new FieldDeclaration(this.name,this.type.merge(_local.type));
+			}
+		}
+		return null;
+	}
+
 }

@@ -127,7 +127,7 @@ public class VariableDeclaration implements Declaration, Instruction {
 	public boolean checkType() {
 		
 		Type treel = this.value.getType();
-	
+
 		if(!treel.compatibleWith(this.type)) {
 			Logger.error("the variable " + this.name + " has the type " + type + " but should be type of " + treel);
 			return false;
