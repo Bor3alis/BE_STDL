@@ -138,6 +138,10 @@ public class Block {
 	}
 
 
+	public void setOffSet(int offSet) {
+		this.offSet = offSet;
+	}
+
 	public int getOffSet() {
 		return offSet;
 	}
