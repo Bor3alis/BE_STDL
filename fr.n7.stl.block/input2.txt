@@ -62,20 +62,36 @@ int t[] = new int[5];
 
 	int y = somme(3,4);
 */
+    //int b = 5;
+    //int a = 3;
     // SIMPLE : OK
     /*int simple() {
         return 1;
     }
 
-    int a = simple();
-    */
+    a = simple();*/
 
-    int b = 42;
-    int simple2 (int a) {
-        return a;
+
+    /*int b = 42;
+    int a = 5;
+    int simple2 (int a, int b) {
+
+
+        return a +b;
     }
 
-    b = simple2(2);
+    b = simple2(2,9);*/
+
+    int a = 42;
+    int facto (int n) {
+        if (n <= 1) {
+            return 1;
+        } else {
+            return (n * facto(n-1));
+        }
+    }
+
+    int b = facto(3);
 
 	// TEST PRINT 
 

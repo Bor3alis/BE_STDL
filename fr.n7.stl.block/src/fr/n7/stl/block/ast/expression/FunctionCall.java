@@ -8,6 +8,7 @@ import java.util.List;
 
 import fr.n7.stl.block.ast.SemanticsUndefinedException;
 import fr.n7.stl.block.ast.instruction.declaration.FunctionDeclaration;
+import fr.n7.stl.block.ast.instruction.declaration.ParameterDeclaration;
 import fr.n7.stl.block.ast.scope.Declaration;
 import fr.n7.stl.block.ast.scope.HierarchicalScope;
 import fr.n7.stl.block.ast.type.AtomicType;
@@ -77,6 +78,10 @@ public class FunctionCall implements Expression {
 			_result = _result && e.resolve(_scope);
 		};
 		this.function = (FunctionDeclaration) _scope.get(this.name); // Récupérer la fonction
+		//this.function.getBody().setOffSet(this.function.getParameters().get(arguments.size()- 1).getOffset() + 1);
+		for (ParameterDeclaration p : this.function.getParameters()) {
+			p.setOffset( p.getOffset() + this.function.getBody().getOffSet());
+		}
 		return _result;
 	}
 	
@@ -95,17 +100,19 @@ public class FunctionCall implements Expression {
 	public Fragment getCode(TAMFactory _factory) {
 		Fragment code = _factory.createFragment();
 		// on ajoute le code des argument
-		for(Expression a : arguments) {
-			code.append(a.getCode(_factory));
+
+		for (int i = 0; i< arguments.size(); i++) {
+			code.append(arguments.get(i).getCode(_factory));
+			code.add(_factory.createStore(Register.SB,function.getParameters().get(i).getOffset(), arguments.get(0).getType().length()));
 		}
 
-		// On associe arguments et paramtres
-		code.add(_factory.createStore(Register.LB,this.function.getBody().getOffSet(), arguments.size()));
-		
+		// On associe arguments et parametres
+
+		code.add(_factory.createCall(this.function.getName(), Register.LB));
 		// on fait le call
 
 
-		code.add(_factory.createCall(this.function.getName(), Register.LB));
+
 
 
 		return code;

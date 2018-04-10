@@ -172,6 +172,14 @@ public class FunctionDeclaration implements Instruction, Declaration {
 		codeBody.addPrefix(labelFct.concat(":"));
 		code.add(_factory.createJump(labelFinFct));
 
+		// On reserve l'espace pour le retour
+		code.add(_factory.createPush(this.getType().length()));
+
+		// On reserve l'espace pour les paramètres
+		code.add(_factory.createPush(taille_parametres()));
+
+
+
 		code.append(codeBody);
 
 		code.addSuffix(labelFinFct.concat(":"));
